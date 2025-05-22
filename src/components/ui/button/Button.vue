@@ -25,3 +25,23 @@ const props = withDefaults(defineProps<Props>(), {
     <slot />
   </Primitive>
 </template>
+
+<style scoped>
+Button {
+  padding: 0.75rem 1.5rem;
+  width: 200px;
+  height: 60px;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+Button:hover {
+  background: #3182ce;
+}
+</style>
