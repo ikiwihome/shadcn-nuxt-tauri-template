@@ -6,18 +6,34 @@
     <div class="top-row">
       <div class="form-group">
         <h3>选择年度<span class="help-icon" title="选择计算使用的税务年度，不同年度的社保和公积金缴费基数不同">?</span></h3>
-        <select v-model="year">
-          <option v-for="y in years" :value="y" :key="y">{{ y }}年</option>
-        </select>
+        <Select v-model="year">
+          <SelectTrigger>
+            <SelectValue placeholder="选择年度" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem v-for="y in years" :value="y" :key="y">
+                {{ y }}年
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
 
       <div class="form-group">
         <h3>所在省市<span class="help-icon" title="选择所在省市以获取当地社保公积金缴纳标准">?</span></h3>
-        <select v-model="city">
-          <option v-for="(_, cityName) in cities" :value="cityName" :key="cityName">
-            {{ cityName }}
-          </option>
-        </select>
+        <Select v-model="city">
+          <SelectTrigger>
+            <SelectValue placeholder="选择省市" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem v-for="(_, cityName) in cities" :value="cityName" :key="cityName">
+                {{ cityName }}
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
     </div>
 
@@ -114,15 +130,33 @@
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.childrenEducation > 0">
             <span>适用月份:</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.childrenEducationStart"
-              @change="validateMonthRange('childrenEducation')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.childrenEducationStart"
+              @update:modelValue="validateMonthRange('childrenEducation')">
+              <SelectTrigger>
+                <SelectValue placeholder="开始月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <span>-</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.childrenEducationEnd"
-              @change="validateMonthRange('childrenEducation')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.childrenEducationEnd"
+              @update:modelValue="validateMonthRange('childrenEducation')">
+              <SelectTrigger>
+                <SelectValue placeholder="结束月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <div class="error-message" v-if="monthRangeErrors.childrenEducation">开始月份不能大于结束月份</div>
           </div>
         </div>
@@ -132,15 +166,33 @@
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.housingLoan > 0">
             <span>适用月份:</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.housingLoanStart"
-              @change="validateMonthRange('housingLoan')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.housingLoanStart"
+              @update:modelValue="validateMonthRange('housingLoan')">
+              <SelectTrigger>
+                <SelectValue placeholder="开始月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <span>-</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.housingLoanEnd"
-              @change="validateMonthRange('housingLoan')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.housingLoanEnd"
+              @update:modelValue="validateMonthRange('housingLoan')">
+              <SelectTrigger>
+                <SelectValue placeholder="结束月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <div class="error-message" v-if="monthRangeErrors.housingLoan">开始月份不能大于结束月份</div>
           </div>
         </div>
@@ -151,15 +203,33 @@
           <div v-if="specialDeductions.housingRent > 0">
             <div class="date-range">
               <span>适用月份:</span>
-              <select class="month-select" v-model.number="specialDeductionMonths.housingRentStart"
-                @change="validateMonthRange('housingRent')">
-                <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-              </select>
+              <Select class="month-select" v-model.number="specialDeductionMonths.housingRentStart"
+                @update:modelValue="validateMonthRange('housingRent')">
+                <SelectTrigger>
+                  <SelectValue placeholder="开始月份" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem v-for="m in 12" :value="m" :key="m">
+                      {{ m }}月
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
               <span>-</span>
-              <select class="month-select" v-model.number="specialDeductionMonths.housingRentEnd"
-                @change="validateMonthRange('housingRent')">
-                <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-              </select>
+              <Select class="month-select" v-model.number="specialDeductionMonths.housingRentEnd"
+                @update:modelValue="validateMonthRange('housingRent')">
+                <SelectTrigger>
+                  <SelectValue placeholder="结束月份" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem v-for="m in 12" :value="m" :key="m">
+                      {{ m }}月
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
               <div class="error-message" v-if="monthRangeErrors.housingRent">开始月份不能大于结束月份</div>
             </div>
           </div>
@@ -170,15 +240,33 @@
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.elderlySupport > 0">
             <span>适用月份:</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.elderlySupportStart"
-              @change="validateMonthRange('elderlySupport')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.elderlySupportStart"
+              @update:modelValue="validateMonthRange('elderlySupport')">
+              <SelectTrigger>
+                <SelectValue placeholder="开始月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <span>-</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.elderlySupportEnd"
-              @change="validateMonthRange('elderlySupport')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.elderlySupportEnd"
+              @update:modelValue="validateMonthRange('elderlySupport')">
+              <SelectTrigger>
+                <SelectValue placeholder="结束月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <div class="error-message" v-if="monthRangeErrors.elderlySupport">开始月份不能大于结束月份</div>
           </div>
         </div>
@@ -188,15 +276,33 @@
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.infantCare > 0">
             <span>适用月份:</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.infantCareStart"
-              @change="validateMonthRange('infantCare')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.infantCareStart"
+              @update:modelValue="validateMonthRange('infantCare')">
+              <SelectTrigger>
+                <SelectValue placeholder="开始月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <span>-</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.infantCareEnd"
-              @change="validateMonthRange('infantCare')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.infantCareEnd"
+              @update:modelValue="validateMonthRange('infantCare')">
+              <SelectTrigger>
+                <SelectValue placeholder="结束月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <div class="error-message" v-if="monthRangeErrors.infantCare">开始月份不能大于结束月份</div>
           </div>
         </div>
@@ -206,15 +312,33 @@
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.continuingEducation > 0">
             <span>适用月份:</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.continuingEducationStart"
-              @change="validateMonthRange('continuingEducation')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.continuingEducationStart"
+              @update:modelValue="validateMonthRange('continuingEducation')">
+              <SelectTrigger>
+                <SelectValue placeholder="开始月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <span>-</span>
-            <select class="month-select" v-model.number="specialDeductionMonths.continuingEducationEnd"
-              @change="validateMonthRange('continuingEducation')">
-              <option v-for="m in 12" :value="m" :key="m">{{ m }}月</option>
-            </select>
+            <Select class="month-select" v-model.number="specialDeductionMonths.continuingEducationEnd"
+              @update:modelValue="validateMonthRange('continuingEducation')">
+              <SelectTrigger>
+                <SelectValue placeholder="结束月份" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem v-for="m in 12" :value="m" :key="m">
+                    {{ m }}月
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <div class="error-message" v-if="monthRangeErrors.continuingEducation">开始月份不能大于结束月份</div>
           </div>
         </div>
@@ -285,6 +409,15 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { calculateMonthlySalary } from '@/utils/taxCalculator'
 import insuranceData from '@/stores/insuranceData.json'
 
@@ -590,56 +723,6 @@ h1 {
   gap: 4px;
 }
 
-.month-select {
-  width: 100px;
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  background: #fff;
-  transition: all 0.2s;
-}
-
-select {
-  width: 120px;
-  /* 增加宽度以提供更多空间 */
-  padding: 0.75rem 0.5rem;
-  /* 调整左右padding */
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  background: #fff;
-  transition: all 0.2s;
-  text-align: center;
-  text-align-last: center;
-  font-size: 16px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-select option {
-  text-align: center;
-  padding: 0.5rem 0;
-  margin: 0 auto;
-  display: block;
-  text-align: center;
-}
-
-/* 为月份选择器添加特定样式 */
-.month-select {
-  width: 80px;
-  padding: 0.75rem 0.25rem;
-}
-
-/* 强制下拉面板文本居中 */
-select::-ms-expand {
-  display: none;
-}
-
-select:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
-}
 
 input[type="number"] {
   width: 100px;
@@ -778,9 +861,8 @@ input[type="number"]:focus {
   margin-top: 0.5rem;
 }
 
-.date-range span:first-child {
-  margin-left: 30px;
-  width: 100px
+.month-select {
+  width: 20px;
 }
 
 @media (max-width: 768px) {
