@@ -120,27 +120,36 @@
           </TableBody>
         </Table>
         <div class="deduction-item">
-          <span>养老保险:</span>
+          <Label>养老保险:</Label>
           <Input type="number" v-model.number="insuranceRates.pensionPercentage" />
           <span>%</span>
         </div>
         <div class="deduction-item">
-          <span>医疗保险:</span>
+          <Label>医疗保险:</Label>
           <Input type="number" v-model.number="insuranceRates.medicalPercentage" />
           <span>%</span>
         </div>
         <div class="deduction-item">
-          <span>失业保险:</span>
+          <Label>失业保险:</Label>
           <Input type="number" v-model.number="insuranceRates.unemploymentPercentage" />
           <span>%</span>
         </div>
         <div class="deduction-item">
-          <span>住房公积金:</span>
+          <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Label>住房公积金:<span class="help-icon">?</span></Label>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>改变公积金个人缴纳比例时<br>对应公积金基数上下限也会更新</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           <Input type="number" v-model.number="insuranceRates.HousingFundPercentage" />
           <span>%</span>
         </div>
         <div class="deduction-item">
-          <span>补充公积金:</span>
+          <Label>补充公积金:</Label>
           <Input type="number" v-model.number="insuranceRates.supplementHousingFundPercentage" />
           <span>%</span>
         </div>
@@ -160,10 +169,11 @@
         <RadioGroup v-model="declarationMethod" class="tax-method">
           <div class="flex items-center space-x-2">
             <RadioGroupItem value="employer" id="employer" />
+            <Label for="employer">通过扣缴义务人申报</Label>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Label for="employer">通过扣缴义务人申报<span class="help-icon">?</span></Label>
+                  <span class="help-icon">?</span>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>每月由单位在工资中预扣专项附加扣除</p>
@@ -173,10 +183,11 @@
           </div>
           <div class="flex items-center space-x-2">
             <RadioGroupItem value="self" id="self" />
+            <Label for="self">综合所得年度自行申报</Label>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Label for="employer">综合所得年度自行申报<span class="help-icon">?</span></Label>
+                  <span class="help-icon">?</span>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>年度汇算清缴时在个人所得税App自行申报扣除</p>
