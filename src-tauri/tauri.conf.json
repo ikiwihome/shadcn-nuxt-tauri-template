@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "nuxt-app",
+  "productName": "shadcn-nuxt-tauri-template",
   "version": "1.0.0",
   "identifier": "com.template.dev",
   "build": {
@@ -25,10 +25,10 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": "msi",
     "icon": [
-      "icons/icon.png",
-      "icons/icon.ico"
+      "../public/favicon.png",
+      "../public/favicon.ico"
     ]
   }
 }

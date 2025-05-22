@@ -1,57 +1,85 @@
-# Tauri + Nuxt 3 Template
+# Shadcn-Vue + Nuxt 3 + Tauri 项目模板
 
-This is a minimal template to combine Tauri and Nuxt 3.
+这是一个集成了shadcn/ui组件库的Nuxt 3和Tauri桌面应用开发模板。
 
-This template is constructed completely with official template from Tauri and Nuxt 3.
+## 技术栈
 
-Tauri API has been verified to work with Nuxt, just make sure `ssr` is `false` in [nuxt.config.ts](./nuxt.config.ts). 
+- **前端框架**: [Nuxt 3](https://nuxt.com/) (Vue 3)
+- **UI组件库**: [shadcn/ui](https://ui.shadcn.com/) (基于Tailwind CSS)
+- **桌面运行时**: [Tauri](https://tauri.app/) (Rust)
+- **构建工具**: Vite
+- **包管理**: pnpm
 
-The code used to verify tauri API has been removed to keep the template as clean as possible. `@tauri-apps/api` has been installed though.
+## 项目结构
 
-## Usage
-
-You could click `Use this template` on GitHub, or simply make a copy of this repo. See the [Auto Script](#auto-script-for-generating-a-template) section for a auto template generation script.
-
-## Auto Script for Generating a Template
-
-This repo will not be always up to date with the latest nuxt and Tauri versions, so if you really want to use the latest version of Tauri and Nuxt, use the script below. The script is also avaialble at [./gen-tauri-nuxt.sh](./gen-tauri-nuxt.sh).
-
-Run it like this `./gen-tauri-nuxt.sh $YOUR_APP_NAME`.
-
-Or this, so you don't need to download or copy anything.
-
-```bash
-wget https://raw.githubusercontent.com/HuakunShen/tauri-nuxt-template/main/gen-tauri-nuxt.sh
-sh gen-tauri-nuxt.sh $APP_NAME
+```
+├── components/            # Vue组件
+│   └── ui/               # shadcn/ui组件
+├── lib/                  # 工具函数
+├── public/               # 静态资源
+├── server/               # Nuxt服务端代码
+├── src-tauri/            # Tauri相关代码
+│   ├── src/              # Rust源代码
+│   └── tauri.conf.json   # Tauri配置
+├── app.vue               # 应用入口
+├── nuxt.config.ts        # Nuxt配置
+└── package.json          # 前端依赖
 ```
 
-It's pretty much completely automatic, but you still need to interact with the shell script prompt. Make sure `npm run generate` is used instead of the default `npm run build`, run it and you will see.
+## 开发环境准备
 
+1. 安装Node.js (>=18.x)
+2. 安装Rust工具链
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+3. 安装pnpm
+   ```bash
+   npm install -g pnpm
+   ```
+
+## 本地开发
+
+1. 安装依赖
+   ```bash
+   pnpm install
+   ```
+2. 启动开发服务器
+   ```bash
+   pnpm run dev
+   ```
+
+## 生产构建
+
+1. 构建前端资源
+   ```bash
+   pnpm run generate
+   ```
+2. 构建Web页面
+   ```bash
+   pnpm run build
+   ```
+3. 预览Web页面
+   ```bash
+   pnpm run preview
+   ```
+4. 构建桌面应用
+   ```bash
+   pnpm run tauri build
+   ```
+   构建结果位于 `src-tauri/target/release/`
+
+## 使用shadcn/ui组件
+
+本项目已预置Button组件示例，位于`components/ui/button`。
+
+添加新组件：
 ```bash
-# gen-tauri-nuxt.sh
-APP_NAME=$1
-if [ -z "$APP_NAME" ]; then
-    echo "Please provide the app name as the first argument"
-    read APP_NAME
-fi
-
-npx nuxi init $APP_NAME
-cd $APP_NAME
-pnpm i
-
-echo "// https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-    compatibilityDate: '2025-05-22',
-    devtools: { enabled: false },
-    ssr: false // SSR must be turned off
-})" > nuxt.config.ts
-pnpm install --save-dev @tauri-apps/cli
-# use sed to add "tauri": "tauri" to package.json -> scripts
-sed -i '' 's/"postinstall": "nuxt prepare"/"postinstall": "nuxt prepare",\n    "tauri": "tauri"/g' package.json
-echo "\033[0;31m\nFor the following questions,\nkeep defaults for all questions except for the 'frontend build command'. \nUse 'npm run generate' \n\033[0m"
-pnpm run tauri init
-# need user interaction here
-# Keep defaults for all questions except for the frontend build command
-# use `npm run generate`
-pnpm install @tauri-apps/api
+pnpm dlx shadcn-vue@latest add 组件名
 ```
+
+## 注意事项
+
+1. Nuxt配置中必须保持`ssr: false`
+2. 生产构建必须使用`npm run generate`而非`npm run build`
+3. Tauri API已预装，可通过`@tauri-apps/api`调用

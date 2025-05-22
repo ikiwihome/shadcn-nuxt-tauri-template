@@ -1,9 +1,9 @@
 {
-  "name": "nuxt-app",
+  "name": "shadcn-nuxt-tauri-template",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "tauri nuxt template",
+  "description": "shadcn nuxt tauri template",
   "keywords": [],
   "author": "ikiwi <ikiwicc@gmail.com>",
   "license": "MIT",
