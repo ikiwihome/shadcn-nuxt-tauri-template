@@ -17,7 +17,6 @@
     "tauri:build": "pnpm tauri build"
   },
   "dependencies": {
-    "@tauri-apps/api": "2.5.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
