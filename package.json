@@ -14,7 +14,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "tauri": "tauri"
+    "tauri:build": "pnpm tauri build"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

@@ -1,7 +1,8 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "productName": "nuxt-app",
   "version": "1.0.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.template.dev",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
@@ -29,6 +30,5 @@
       "icons/icon.png",
       "icons/icon.ico"
     ]
-  },
-  "$schema": "../node_modules/@tauri-apps/cli/schema.json"
+  }
 }
