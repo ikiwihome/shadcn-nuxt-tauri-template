@@ -10,7 +10,10 @@ export default defineNuxtConfig({
   ssr: false,
   srcDir: "src/",
 
-  modules: ['shadcn-nuxt'],
+  modules: ['shadcn-nuxt', '@nuxtjs/color-mode'],
+  colorMode: {
+    classSuffix: ''
+  },
   shadcn: {
     /**
      * Prefix for all the imported component
