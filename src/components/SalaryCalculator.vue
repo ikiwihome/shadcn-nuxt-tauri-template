@@ -51,40 +51,38 @@
 
       <div class="form-group">
         <h3>五险一金个人缴纳比例<span class="help-icon" title="根据当地政策设置各项社保和公积金的个人缴纳比例，缴费基数每年7月份调整">?</span></h3>
-        <table class="base-table">
-          <thead>
-            <tr>
-              <th rowspan="2"></th>
-              <th rowspan="2"></th>
-              <th colspan="0">1~6月</th>
-              <th colspan="0">7~12月</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="2">社保<br>缴费基数</td>
-              <td>下限</td>
-              <td><Input type="number" v-model.number="insuranceRates.socialMinBase1" /></td>
-              <td><Input type="number" v-model.number="insuranceRates.socialMinBase2" /></td>
-            </tr>
-            <tr>
-              <td>上限</td>
-              <td><Input type="number" v-model.number="insuranceRates.socialMaxBase1" /></td>
-              <td><Input type="number" v-model.number="insuranceRates.socialMaxBase2" /></td>
-            </tr>
-            <tr>
-              <td rowspan="2">公积金<br>缴费基数</td>
-              <td>下限</td>
-              <td><Input type="number" v-model.number="insuranceRates.housingMinBase1" /></td>
-              <td><Input type="number" v-model.number="insuranceRates.housingMinBase2" /></td>
-            </tr>
-            <tr>
-              <td>上限</td>
-              <td><Input type="number" v-model.number="insuranceRates.housingMaxBase1" /></td>
-              <td><Input type="number" v-model.number="insuranceRates.housingMaxBase2" /></td>
-            </tr>
-          </tbody>
-        </table>
+        <Table class="base-table">
+          <TableBody>
+            <TableRow>
+              <TableCell colspan="1"></TableCell>
+              <TableCell colspan="1"></TableCell>
+              <TableCell colspan="1">1~6月</TableCell>
+              <TableCell colspan="1">7~12月</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell rowspan="2">社保<br>缴费基数</TableCell>
+              <TableCell>下限</TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.socialMinBase1" /></TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.socialMinBase2" /></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>上限</TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.socialMaxBase1" /></TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.socialMaxBase2" /></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell rowspan="2">公积金<br>缴费基数</TableCell>
+              <TableCell>下限</TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.housingMinBase1" /></TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.housingMinBase2" /></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>上限</TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.housingMaxBase1" /></TableCell>
+              <TableCell><Input type="number" v-model.number="insuranceRates.housingMaxBase2" /></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
         <div class="deduction-item">
           <span>养老保险:</span>
           <Input type="number" v-model.number="insuranceRates.pensionPercentage" />
@@ -143,7 +141,6 @@
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <span>-</span>
             <Select class="month-select" v-model.number="specialDeductionMonths.childrenEducationEnd"
               @update:modelValue="validateMonthRange('childrenEducation')">
               <SelectTrigger>
@@ -179,7 +176,6 @@
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <span>-</span>
             <Select class="month-select" v-model.number="specialDeductionMonths.housingLoanEnd"
               @update:modelValue="validateMonthRange('housingLoan')">
               <SelectTrigger>
@@ -216,7 +212,6 @@
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <span>-</span>
               <Select class="month-select" v-model.number="specialDeductionMonths.housingRentEnd"
                 @update:modelValue="validateMonthRange('housingRent')">
                 <SelectTrigger>
@@ -253,7 +248,6 @@
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <span>-</span>
             <Select class="month-select" v-model.number="specialDeductionMonths.elderlySupportEnd"
               @update:modelValue="validateMonthRange('elderlySupport')">
               <SelectTrigger>
@@ -289,7 +283,6 @@
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <span>-</span>
             <Select class="month-select" v-model.number="specialDeductionMonths.infantCareEnd"
               @update:modelValue="validateMonthRange('infantCare')">
               <SelectTrigger>
@@ -325,7 +318,6 @@
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <span>-</span>
             <Select class="month-select" v-model.number="specialDeductionMonths.continuingEducationEnd"
               @update:modelValue="validateMonthRange('continuingEducation')">
               <SelectTrigger>
@@ -356,49 +348,49 @@
 
     <div class="result-section" v-if="results">
       <h2>计算结果</h2>
-      <table>
-        <thead>
-          <tr>
-            <th rowspan="2">月份</th>
-            <th rowspan="2">税前工资</th>
-            <th rowspan="2">缴费基数</th>
-            <th colspan="4">五险一金</th>
-            <th rowspan="2">专项扣除</th>
-            <th rowspan="2">累计专项扣除</th>
-            <th rowspan="2">累计专项附加扣除</th>
-            <th rowspan="2">预扣税率</th>
-            <th rowspan="2">应纳税额</th>
-            <th rowspan="2">税后工资</th>
-          </tr>
-          <tr>
-            <th>公积金<br>(含补充)</th>
-            <th>养老保险</th>
-            <th>医疗保险</th>
-            <th>失业保险</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(result, index) in results.monthlyResults" :key="index">
-            <td>{{ index + 1 }}月</td>
-            <td>{{ result.grossSalary.toFixed(0) }}</td>
-            <td>{{ result.baseAmount.toFixed(0) }}</td>
-            <td>{{ (result.insurance?.HousingFundPercentage +
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead rowspan="2">月份</TableHead>
+            <TableHead rowspan="2">税前工资</TableHead>
+            <TableHead rowspan="2">缴费基数</TableHead>
+            <TableHead colspan="4">五险一金</TableHead>
+            <TableHead rowspan="2">专项扣除</TableHead>
+            <TableHead rowspan="2">累计专项扣除</TableHead>
+            <TableHead rowspan="2">累计专项附加扣除</TableHead>
+            <TableHead rowspan="2">预扣税率</TableHead>
+            <TableHead rowspan="2">应纳税额</TableHead>
+            <TableHead rowspan="2">税后工资</TableHead>
+          </TableRow>
+          <TableRow>
+            <TableHead>公积金<br>(含补充)</TableHead>
+            <TableHead>养老保险</TableHead>
+            <TableHead>医疗保险</TableHead>
+            <TableHead>失业保险</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow v-for="(result, index) in results.monthlyResults" :key="index">
+            <TableCell>{{ index + 1 }}月</TableCell>
+            <TableCell>{{ result.grossSalary.toFixed(0) }}</TableCell>
+            <TableCell>{{ result.baseAmount.toFixed(0) }}</TableCell>
+            <TableCell>{{ (result.insurance?.HousingFundPercentage +
               result.insurance?.supplementHousingFundPercentage).toFixed(0) }}
-            </td>
-            <td>{{ result.insurance?.pensionPercentage.toFixed(2) }}</td>
-            <td>{{ result.insurance?.medicalPercentage.toFixed(2) }}</td>
-            <td>{{ result.insurance?.unemploymentPercentage.toFixed(2) }}</td>
-            <td>{{ (result.insurance?.HousingFundPercentage + result.insurance?.supplementHousingFundPercentage +
+            </TableCell>
+            <TableCell>{{ result.insurance?.pensionPercentage.toFixed(2) }}</TableCell>
+            <TableCell>{{ result.insurance?.medicalPercentage.toFixed(2) }}</TableCell>
+            <TableCell>{{ result.insurance?.unemploymentPercentage.toFixed(2) }}</TableCell>
+            <TableCell>{{ (result.insurance?.HousingFundPercentage + result.insurance?.supplementHousingFundPercentage +
               result.insurance?.pensionPercentage + result.insurance?.medicalPercentage +
-              result.insurance?.unemploymentPercentage).toFixed(2) }}</td>
-            <td>{{ result.cumulativeDeduction.toFixed(2) }}</td>
-            <td>{{ result.cumulativeSpecialDeduction.toFixed(0) }}</td>
-            <td>{{ (result.taxRate * 100).toFixed(0) }}%</td>
-            <td>{{ result.tax.toFixed(2) }}</td>
-            <td>{{ result.netSalary.toFixed(2) }}</td>
-          </tr>
-        </tbody>
-      </table>
+              result.insurance?.unemploymentPercentage).toFixed(2) }}</TableCell>
+            <TableCell>{{ result.cumulativeDeduction.toFixed(2) }}</TableCell>
+            <TableCell>{{ result.cumulativeSpecialDeduction.toFixed(0) }}</TableCell>
+            <TableCell>{{ (result.taxRate * 100).toFixed(0) }}%</TableCell>
+            <TableCell>{{ result.tax.toFixed(2) }}</TableCell>
+            <TableCell>{{ result.netSalary.toFixed(2) }}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </div>
   </div>
 </template>
@@ -418,6 +410,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import { calculateMonthlySalary } from '@/utils/taxCalculator'
 import insuranceData from '@/stores/insuranceData.json'
 
@@ -790,52 +790,6 @@ input[type="number"]:focus {
   pointer-events: none;
 }
 
-.base-table {
-  width: 100%;
-  margin-bottom: 1rem;
-  border-collapse: collapse;
-}
-
-.base-table th,
-.base-table td {
-  padding: 0.75rem;
-  text-align: center;
-}
-
-.base-table td[rowspan="2"] {
-  white-space: nowrap;
-}
-
-.base-table th {
-  background: #2c3e5000;
-  color: rgb(0, 0, 0);
-  font-weight: 500;
-}
-
-.base-table tr:nth-child(even) {
-  background: #ffffff00;
-}
-
-.base-table input[type="number"] {
-  width: 80px;
-  padding: 0.5rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .base-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .base-table input[type="number"] {
-    width: 70px;
-  }
-}
-
 @media (max-width: 768px) {
   .monthly-salary {
     grid-template-columns: 150px 120px 60px;
@@ -855,20 +809,21 @@ input[type="number"]:focus {
 
 .date-range {
   display: grid;
-  grid-template-columns: 120px 80px 10px 80px;
+  grid-template-columns: 120px 1fr 1fr;
   align-items: center;
+  text-align: center;
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
 
-.month-select {
-  width: 20px;
-}
+.date-range span {
+  margin-left: 2rem;
+  }
 
 @media (max-width: 768px) {
   .date-range {
     display: grid;
-    grid-template-columns: 120px 80px 10px 80px;
+    grid-template-columns: 120px 1fr 1fr;
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
@@ -977,7 +932,9 @@ tr:nth-child(even) {
 
 .error-message {
   color: #e53e3e;
+  width: 300px;
   font-size: 0.875rem;
+  margin-left: 5rem;
   margin-top: 0.25rem;
 }
 
