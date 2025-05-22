@@ -56,7 +56,6 @@
     </div>
 
     <div class="input-section">
-
       <div class="form-group">
         <TooltipProvider>
           <Tooltip>
@@ -136,15 +135,15 @@
         </div>
         <div class="deduction-item">
           <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Label>住房公积金:<span class="help-icon">?</span></Label>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>改变公积金个人缴纳比例时<br>对应公积金基数上下限也会更新</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>住房公积金:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>改变公积金个人缴纳比例时<br>对应公积金基数上下限也会更新</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="insuranceRates.HousingFundPercentage" />
           <span>%</span>
         </div>
