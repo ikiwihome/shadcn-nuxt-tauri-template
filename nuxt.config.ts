@@ -4,10 +4,11 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-22',
   devtools: { enabled: false },
-  css: ['~/public/assets/css/tailwind.css'],
+  css: ['./src/assets/css/tailwind.css'],
 
   // SSR must be turned off
   ssr: false,
+  srcDir: "src/",
 
   modules: ['shadcn-nuxt'],
   shadcn: {
@@ -17,15 +18,15 @@ export default defineNuxtConfig({
     prefix: '',
     /**
      * Directory that the component lives in.
-     * @default "./components/ui"
+     * @default "./src/components/ui"
      */
-    componentDir: './components/ui'
+    componentDir: './src/components/ui'
   },
   nitro: {
     preset: 'static',
     compressPublicAssets: true,
     prerender: {
-      routes: ['/', '/sitemap.xml'],
+      routes: ['/src', '/sitemap.xml'],
       crawlLinks: true
     },
     routeRules: {

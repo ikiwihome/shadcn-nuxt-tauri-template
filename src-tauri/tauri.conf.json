@@ -12,10 +12,10 @@
   "app": {
     "windows": [
       {
-        "title": "nuxt-app",
-        "width": 800,
-        "height": 600,
-        "resizable": true,
+        "title": "税后收入计算器",
+        "width": 1400,
+        "height": 800,
+        "resizable": false,
         "fullscreen": false
       }
     ],
@@ -27,8 +27,8 @@
     "active": true,
     "targets": "msi",
     "icon": [
-      "../public/favicon.png",
-      "../public/favicon.ico"
+      "../src/public/favicon.png",
+      "../src/public/favicon.ico"
     ]
   }
 }
