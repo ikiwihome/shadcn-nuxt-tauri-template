@@ -5,7 +5,16 @@
 
     <div class="top-row">
       <div class="form-group">
-        <h3>选择年度<span class="help-icon" title="选择计算使用的税务年度，不同年度的社保和公积金缴费基数不同">?</span></h3>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <h3>选择年度<span class="help-icon">?</span></h3>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>选择计算使用的税务年度<br>不同年度的社保和公积金缴费基数不同</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <Select v-model="year">
           <SelectTrigger>
             <SelectValue placeholder="选择年度" />
@@ -21,7 +30,16 @@
       </div>
 
       <div class="form-group">
-        <h3>所在省市<span class="help-icon" title="选择所在省市以获取当地社保公积金缴纳标准">?</span></h3>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <h3>所在省市<span class="help-icon">?</span></h3>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>选择所在省市以获取当地社保公积金缴纳标准</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <Select v-model="city">
           <SelectTrigger>
             <SelectValue placeholder="选择省市" />
@@ -40,7 +58,16 @@
     <div class="input-section">
 
       <div class="form-group">
-        <h3>月度工资<span class="help-icon" title="输入每月扣除五险一金前的税前工资，1月输入后会自动填充到其他月份">?</span></h3>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <h3>月度工资<span class="help-icon">?</span></h3>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>输入每月扣除五险一金前的税前工资<br>1月输入后会自动填充到其他月份</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <div v-for="(salary, index) in monthlySalaries" :key="index" class="monthly-salary">
           <span>{{ index + 1 }}月:</span>
           <Input type="number" v-model.number="monthlySalaries[index]"
@@ -50,7 +77,16 @@
       </div>
 
       <div class="form-group">
-        <h3>五险一金个人缴纳比例<span class="help-icon" title="根据当地政策设置各项社保和公积金的个人缴纳比例，缴费基数每年7月份调整">?</span></h3>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <h3>五险一金个人缴纳比例<span class="help-icon">?</span></h3>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>根据当地政策设置各项社保和公积金的个人缴纳比例<br>缴费基数每年7月份调整</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <Table class="base-table">
           <TableBody>
             <TableRow>
@@ -111,19 +147,55 @@
       </div>
 
       <div class="form-group">
-        <h3>专项附加扣除<span class="help-icon" title="根据个人情况填写可享受的专项附加扣除项目">?</span></h3>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <h3>专项附加扣除<span class="help-icon">?</span></h3>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>根据个人情况填写可享受的专项附加扣除项目</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <RadioGroup v-model="declarationMethod" class="tax-method">
           <div class="flex items-center space-x-2">
             <RadioGroupItem value="employer" id="employer" />
-            <Label for="employer" title="每月由单位在工资中预扣专项附加扣除">通过扣缴义务人申报</Label>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Label for="employer">通过扣缴义务人申报<span class="help-icon">?</span></Label>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>每月由单位在工资中预扣专项附加扣除</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
           <div class="flex items-center space-x-2">
             <RadioGroupItem value="self" id="self" />
-            <Label for="self" title="年度汇算清缴时在个人所得税App自行申报扣除">综合所得年度自行申报</Label>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Label for="employer">综合所得年度自行申报<span class="help-icon">?</span></Label>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>年度汇算清缴时在个人所得税App自行申报扣除</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </RadioGroup>
         <div class="additional-deduction-item">
-          <span title="子女全日制学历教育支出，每月2000元定额扣除">子女教育:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>子女教育:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>子女全日制学历教育支出<br>每月2000元定额扣除</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.childrenEducation" />
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.childrenEducation > 0">
@@ -158,7 +230,16 @@
           </div>
         </div>
         <div class="additional-deduction-item">
-          <span title="首套住房贷款利息支出，每月1000元定额扣除">住房贷款利息:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>住房贷款利息:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>首套住房贷款利息支出<br>每月1000元定额扣除</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.housingLoan" />
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.housingLoan > 0">
@@ -193,7 +274,16 @@
           </div>
         </div>
         <div class="additional-deduction-item">
-          <span title="工作城市无自有住房租金支出，直辖市/省会1500元/月，其他城市1100或800元/月">住房租金:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>住房租金:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>工作城市无自有住房租金支出<br>直辖市/省会1500元/月<br>其他城市1100或800元/月</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.housingRent" />
           <span>元/月</span>
           <div v-if="specialDeductions.housingRent > 0">
@@ -230,7 +320,16 @@
           </div>
         </div>
         <div class="additional-deduction-item">
-          <span title="赡养60岁以上老人，每月3000元定额扣除">赡养老人:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>赡养老人:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>赡养60岁以上老人<br>每月3000元定额扣除</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.elderlySupport" />
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.elderlySupport > 0">
@@ -265,7 +364,16 @@
           </div>
         </div>
         <div class="additional-deduction-item">
-          <span title="3岁以下婴幼儿照护支出，每月2000元定额扣除">3岁以下婴幼儿照护:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>3岁以下婴幼儿照护:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>3岁以下婴幼儿照护支出<br>每月2000元定额扣除</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.infantCare" />
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.infantCare > 0">
@@ -300,7 +408,16 @@
           </div>
         </div>
         <div class="additional-deduction-item">
-          <span title="学历继续教育每月400元，不超过48个月，职业资格教育每年3600元定额扣除">继续教育:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>继续教育:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>学历继续教育每月400元，不超过48个月<br>职业资格教育每年3600元定额扣除</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.continuingEducation" />
           <span>元/月</span>
           <div class="date-range" v-if="specialDeductions.continuingEducation > 0">
@@ -335,7 +452,16 @@
           </div>
         </div>
         <div class="additional-deduction-item">
-          <span title="医保报销后个人负担超15000元部分，80000元限额内据实扣除">大病医疗:</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Label>大病医疗:<span class="help-icon">?</span></Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>医保报销后个人负担超15000元部分<br>80000元限额内据实扣除</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Input type="number" v-model.number="specialDeductions.seriousIllness" />
           <span>元/年</span>
         </div>
@@ -418,6 +544,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 import { calculateMonthlySalary } from '@/utils/taxCalculator'
 import insuranceData from '@/stores/insuranceData.json'
 
@@ -757,7 +889,7 @@ input[type="number"]:focus {
 .additional-deduction-item {
   margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 150px auto 1fr;
+  grid-template-columns: 180px auto 1fr;
   align-items: center;
   gap: 0.5rem;
 }
@@ -813,12 +945,13 @@ input[type="number"]:focus {
   align-items: center;
   text-align: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
 }
 
 .date-range span {
   margin-left: 2rem;
-  }
+}
 
 @media (max-width: 768px) {
   .date-range {
