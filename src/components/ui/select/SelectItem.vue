@@ -35,8 +35,10 @@ const forwardedProps = useForwardProps(delegatedProps)
       </SelectItemIndicator>
     </span>
 
-    <SelectItemText>
-      <slot />
-    </SelectItemText>
+    <div class="flex justify-center w-full">
+      <SelectItemText>
+        <slot />
+      </SelectItemText>
+    </div>
   </SelectItem>
 </template>
