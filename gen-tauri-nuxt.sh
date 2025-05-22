@@ -10,7 +10,8 @@ npm i
 
 echo "// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    devtools: { enabled: true },
+    compatibilityDate: '2025-05-22',
+    devtools: { enabled: false },
     ssr: false // SSR must be turned off
 })" > nuxt.config.ts
 npm install --save-dev @tauri-apps/cli
