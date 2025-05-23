@@ -81,5 +81,5 @@ pnpm dlx shadcn-vue@latest add 组件名
 ## 注意事项
 
 1. Nuxt配置中必须保持`ssr: false`
-2. 生产构建必须使用`npm run generate`而非`npm run build`
+2. 生产构建必须使用`pnpm run generate`而非`pnpm run build`
 3. Tauri API已预装，可通过`@tauri-apps/api`调用

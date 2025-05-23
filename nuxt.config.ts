@@ -27,9 +27,9 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'static',
-    compressPublicAssets: true,
+    compressPublicAssets: false,
     prerender: {
-      routes: ['/src', '/sitemap.xml'],
+      routes: ['/'],
       crawlLinks: true
     },
     routeRules: {
@@ -44,6 +44,10 @@ export default defineNuxtConfig({
     }
   },
   vite: {
+    build: {
+      // disable css/js compress
+      minify: true,
+    },
     plugins: [
       tailwindcss(),
     ],
