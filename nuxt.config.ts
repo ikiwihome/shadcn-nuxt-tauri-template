@@ -30,8 +30,7 @@ export default defineNuxtConfig({
     preset: 'static',
     compressPublicAssets: false,
     prerender: {
-      routes: ['/'],
-      crawlLinks: true
+      routes: ['/']
     },
     routeRules: {
       '/**': {
@@ -45,9 +44,21 @@ export default defineNuxtConfig({
     }
   },
   vite: {
+    css: {
+      devSourcemap: true
+    },
+    optimizeDeps: {
+      exclude: ['@nuxt/nitro']
+    },
     build: {
       // css/js compress
       minify: true,
+      sourcemap: false,
+      rollupOptions: {
+        output: {
+          sourcemap: false
+        }
+      }
     },
     plugins: [
       tailwindcss(),
