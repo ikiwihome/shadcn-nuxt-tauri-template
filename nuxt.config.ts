@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+import pkg from './package.json';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-22',
@@ -45,7 +46,7 @@ export default defineNuxtConfig({
   },
   vite: {
     build: {
-      // disable css/js compress
+      // css/js compress
       minify: true,
     },
     plugins: [
@@ -53,6 +54,21 @@ export default defineNuxtConfig({
     ],
   },
   app: {
+    head: {
+      title: pkg.name,
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1.0, shrink-to-fit=no',
+      htmlAttrs: {
+        lang: 'zh-CN',
+      },
+      meta: [
+        { name: 'keywords', content: pkg.keywords.join(', ') },
+        { name: 'description', content: pkg.description }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    },
     baseURL: './',
     buildAssetsDir: '_nuxt/'
   }

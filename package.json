@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "shadcn nuxt tauri template",
-  "keywords": [],
+  "description": "shadcn nuxt3 tauri template",
+  "keywords": ["shadcn", "nuxt3", "tauri", "template"],
   "author": "ikiwi <ikiwicc@gmail.com>",
   "license": "MIT",
   "scripts": {
