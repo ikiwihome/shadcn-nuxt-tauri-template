@@ -31,8 +31,6 @@ Button {
   padding: 0.75rem 1.5rem;
   width: 200px;
   height: 60px;
-  background: #4299e1;
-  color: white;
   border: none;
   border-radius: 6px;
   font-weight: 500;
@@ -42,6 +40,6 @@ Button {
 }
 
 Button:hover {
-  background: #3182ce;
+  background: #cbcbcb;
 }
 </style>

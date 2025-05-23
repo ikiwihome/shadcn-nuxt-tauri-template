@@ -774,7 +774,7 @@ input[type="number"]::-webkit-inner-spin-button {
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem;
-  background: #fff;
+  background: #ffffff05;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
@@ -795,14 +795,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 h1 {
-  color: #2c3e50;
   text-align: center;
   margin-bottom: 1rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
 .subtitle {
-  color: #718096;
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.1rem;
@@ -843,7 +842,7 @@ h1 {
 
 .form-group {
   margin-bottom: 1rem;
-  background: #f8f9fa;
+  background: #cbcbcb05;
   padding: 1rem;
   border-radius: 8px;
 }
@@ -855,7 +854,6 @@ h1 {
 }
 
 .form-group h3 {
-  color: #2c3e50;
   margin-right: 1rem;
   margin-bottom: 1rem;
   font-size: 1.1rem;
@@ -871,7 +869,6 @@ input[type="number"] {
   padding: 0.75rem;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
-  background: #fff;
   transition: all 0.2s;
   text-align: center;
   font-size: 16px;
@@ -1036,7 +1033,6 @@ table {
 
 th {
   background: #2c3e50;
-  color: white;
   padding: 0.75rem;
   text-align: center;
 }
@@ -1044,10 +1040,6 @@ th {
 td {
   padding: 0.75rem;
   text-align: center;
-}
-
-tr:nth-child(even) {
-  background: #f8f9fa;
 }
 
 .tax-method {
