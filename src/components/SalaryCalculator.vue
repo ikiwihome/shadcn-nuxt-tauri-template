@@ -1,5 +1,11 @@
 <template>
   <div class="calculator-container">
+    <div class="theme-toggle">
+      <Button variant="ghost" size="icon" @click="toggleDarkMode">
+        <Sun v-if="!isDarkMode" class="h-5 w-5" />
+        <Moon v-else class="h-5 w-5" />
+      </Button>
+    </div>
     <h1>2025年最新工资税后收入计算器</h1>
     <h2 class="subtitle">一个可以精确到分的税后收入计算器</h2>
 
@@ -478,7 +484,7 @@
       </div>
 
       <div class="action-buttons">
-        <Button @click="calculate">计算</Button>
+        <Button class="calc-button" @click="calculate">计算</Button>
       </div>
     </div>
 
@@ -532,7 +538,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+import { Sun, Moon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -713,6 +720,20 @@ watch(() => insuranceRates.value.HousingFundPercentage, () => {
 updateInsuranceBases()
 watch([year, city], updateInsuranceBases)
 
+const isDarkMode = ref(false)
+
+function toggleDarkMode() {
+  isDarkMode.value = !isDarkMode.value
+  document.documentElement.classList.toggle('dark', isDarkMode.value)
+}
+
+onMounted(() => {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    isDarkMode.value = true
+    document.documentElement.classList.add('dark')
+  }
+})
+
 const results = ref<any>(null)
 
 function validateMonthRange(type: string) {
@@ -767,6 +788,11 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.theme-toggle {
+  position: relative;
+  z-index: 10;
 }
 
 /* 基础样式 */
@@ -983,6 +1009,11 @@ input[type="number"]:focus {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+}
+
+.calc-button {
+  width: 200px;
+  height: 60px;
 }
 
 .result-section {

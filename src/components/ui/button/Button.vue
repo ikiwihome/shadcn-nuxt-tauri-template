@@ -29,8 +29,6 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped>
 Button {
   padding: 0.75rem 1.5rem;
-  width: 200px;
-  height: 60px;
   border: none;
   border-radius: 6px;
   font-weight: 500;
