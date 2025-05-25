@@ -999,14 +999,9 @@ table {
 @media (max-width: 768px) {
   table {
     display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  table {
-    display: block;
     width: 100%;
     overflow-x: auto;
+    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -1091,6 +1086,5 @@ td {
 
 .help-icon:hover {
   background-color: #3182ce;
-  transform: translateY(-4px) scale(1.1);
 }
 </style>
