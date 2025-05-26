@@ -7,23 +7,45 @@
 - **前端框架**: [Nuxt 3](https://nuxt.com/) (Vue 3)
 - **UI组件库**: [shadcn/ui](https://ui.shadcn.com/) (基于Tailwind CSS)
 - **桌面运行时**: [Tauri](https://tauri.app/) (Rust)
-- **构建工具**: Vite
 - **包管理**: pnpm
 
 ## 项目结构
 
 ```
-├── components/            # Vue组件
-│   └── ui/               # shadcn/ui组件
-├── lib/                  # 工具函数
-├── public/               # 静态资源
-├── server/               # Nuxt服务端代码
-├── src-tauri/            # Tauri相关代码
-│   ├── src/              # Rust源代码
-│   └── tauri.conf.json   # Tauri配置
-├── app.vue               # 应用入口
-├── nuxt.config.ts        # Nuxt配置
-└── package.json          # 前端依赖
+├── src/                  # 前端源代码
+│   ├── app.vue           # 应用入口
+│   ├── assets/           # 静态资源
+│   │   └── css/          # 样式文件
+│   │       └── tailwind.css
+│   ├── components/       # Vue组件
+│   │   ├── ui/          # shadcn/ui组件
+│   │   │   ├── button/  # 按钮组件
+│   │   │   ├── input/   # 输入框组件
+│   │   │   ├── label/   # 标签组件
+│   │   │   ├── radio-group/ # 单选组组件
+│   │   │   ├── select/  # 选择器组件
+│   │   │   ├── switch/  # 开关组件
+│   │   │   ├── table/   # 表格组件
+│   │   │   └── tooltip/ # 提示组件
+│   ├── lib/             # 工具函数
+│   ├── pages/           # 页面路由
+│   ├── public/          # 公共资源
+│   ├── server/          # Nuxt服务端代码
+│   ├── stores/          # 状态管理
+│   ├── types/           # 类型定义
+│   └── utils/           # 工具函数
+├── src-tauri/           # Tauri相关代码
+│   ├── src/             # Rust源代码
+│   ├── capabilities/    # Tauri能力配置
+│   ├── gen/             # 生成代码
+│   └── target/          # 构建输出
+├── .gitignore
+├── components.json      # shadcn组件配置
+├── Dockerfile
+├── LICENSE
+├── nuxt.config.ts       # Nuxt配置
+├── package.json         # 前端依赖
+└── tsconfig.json        # TypeScript配置
 ```
 
 ## 开发环境准备
