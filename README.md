@@ -38,6 +38,12 @@
    npm install -g pnpm
    ```
 
+4. 安装所有shadcn UI组件
+
+   ```bash
+   pnpm dlx shadcn-vue@latest add alert-dialog avatar badge button calendar card checkbox dialog dropdown-menu form hover-card input label menubar navigation-menu popover progress radio-group scroll-area select separator skeleton slider switch table tabs textarea toggle tooltip
+   ```
+
 ## 本地开发
 
 1. 安装依赖
