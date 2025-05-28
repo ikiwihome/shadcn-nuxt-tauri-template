@@ -596,15 +596,7 @@
       </Alert>
     </section>
 
-    <!-- Aspect Ratio 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Aspect Ratio 纵横比</h2>
-      <AspectRatio :ratio="16 / 9" class="bg-muted w-full max-w-md">
-        <!-- 这里可以放置需要保持纵横比的内容，例如图片或视频 -->
-        <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb797e09?w=800&dpr=2&q=80"
-          alt="Photo by Drew Beamer" class="rounded-md object-cover">
-      </AspectRatio>
-    </section>
+
 
     <!-- Breadcrumb 组件案例 -->
     <section>
@@ -669,28 +661,6 @@
         </CollapsibleContent>
       </Collapsible>
       <div class="mt-2 text-sm text-gray-500">当前状态：{{ isCollapsibleOpen ? '展开' : '折叠' }}</div>
-    </section>
-
-    <!-- Combobox 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Combobox 组合框</h2>
-      <!-- Combobox 组件需要状态管理和过滤逻辑，这里提供基本结构 -->
-      <!-- 实际使用中，Combobox 需要绑定 value 和 items 数组，并实现过滤功能 -->
-      <Combobox>
-        <ComboboxTrigger>
-          <ComboboxInput placeholder="选择框架..." />
-          <!-- <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" /> -->
-        </ComboboxTrigger>
-        <ComboboxContent>
-          <ComboboxEmpty />
-          <ComboboxGroup>
-            <ComboboxItem value="nuxt">Nuxt.js</ComboboxItem>
-            <ComboboxItem value="next">Next.js</ComboboxItem>
-            <ComboboxItem value="vue">Vue</ComboboxItem>
-            <ComboboxItem value="react">React</ComboboxItem>
-          </ComboboxGroup>
-        </ComboboxContent>
-      </Combobox>
     </section>
 
     <!-- Command 组件案例 -->
@@ -795,25 +765,26 @@
 
     <!-- Pagination 组件案例 -->
     <section>
-      <h2 class="text-xl font-bold mb-4">Pagination 分页</h2>
-      <Pagination v-slot="{ page }" :total="100" :sibling-count="1" show-edges :default-page="1" :items-per-page="10" v-model:page="currentPage">
-        <Pagination.List v-slot="{ items }" class="flex items-center gap-1">
-          <PaginationFirst />
-          <PaginationPrev />
+      <h2 class="text-xl font-bold mb-4">Number Field 数字输入框</h2>
+      <div class="w-full max-w-xs space-y-2">
+        <Pagination v-slot="{ page }" :items-per-page="10" :total="30" :default-page="2">
+          <PaginationContent v-slot="{ items }">
+            <PaginationFirst />
+            <PaginationPrevious />
 
-          <template v-for="(item, index) in items">
-            <Pagination.ListItem v-if="item.type === 'page'" :key="index" :value="item.value" as-child>
-              <Button class="w-10 h-10 p-0" :variant="item.value === page ? 'default' : 'outline'">
+            <template v-for="(item, index) in items" :key="index">
+              <PaginationItem v-if="item.type === 'page'" :value="item.value" :is-active="item.value === page">
                 {{ item.value }}
-              </Button>
-            </Pagination.ListItem>
-            <PaginationEllipsis v-else :key="item.type" :index="index" />
-          </template>
+              </PaginationItem>
+            </template>
 
-          <PaginationNext />
-          <PaginationLast />
-        </Pagination.List>
-      </Pagination>
+            <PaginationEllipsis :index="4" />
+
+            <PaginationNext />
+            <PaginationLast />
+          </PaginationContent>
+        </Pagination>
+      </div>
     </section>
 
     <!-- Pin Input 组件案例 -->
@@ -930,23 +901,24 @@
     <!-- Stepper 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Stepper 步骤指示器</h2>
-      <!-- Stepper 组件通常用于引导用户完成一系列步骤 -->
-      <!-- 完整的 Stepper 实现可能需要状态管理和逻辑控制，这里展示基本结构 -->
-      <Stepper :steps="[{ label: '第一步' }, { label: '第二步' }, { label: '第三步' }]" class="w-full max-w-md" v-model:current-step="currentStep">
-        <StepperItem :step="1" label="第一步">
-          <p>这是第一步的内容。</p>
-        </StepperItem>
-        <StepperItem :step="2" label="第二步">
-          <p>这是第二步的内容。</p>
-        </StepperItem>
-        <StepperItem :step="3" label="第三步">
-          <p>这是第三步的内容。</p>
+      <Stepper>
+        <StepperItem v-for="item in steps" :key="item.step" class="basis-1/4" :step="item.step">
+          <StepperTrigger>
+            <StepperIndicator>
+              <component :is="item.icon" class="w-4 h-4" />
+            </StepperIndicator>
+            <div class="flex flex-col">
+              <StepperTitle>
+                {{ item.title }}
+              </StepperTitle>
+              <StepperDescription>
+                {{ item.description }}
+              </StepperDescription>
+            </div>
+          </StepperTrigger>
+          <StepperSeparator v-if="item.step !== steps[steps.length - 1].step" class="w-full h-px" />
         </StepperItem>
       </Stepper>
-      <div class="flex gap-2 mt-4">
-        <Button @click="currentStep--" :disabled="currentStep === 1">上一步</Button>
-        <Button @click="currentStep++" :disabled="currentStep === 3">下一步</Button>
-      </div>
     </section>
 
     <!-- Tags Input 组件案例 -->
@@ -956,7 +928,7 @@
       <TagsInput v-model="tagsInputValue" class="w-full max-w-md">
         <TagsInputItem v-for="(tag, index) in tagsInputValue" :key="index" :value="tag">
           {{ tag }}
-          <TagsInputItemRemove />
+          <TagsInputItemDelete />
         </TagsInputItem>
         <TagsInputInput placeholder="添加标签..." />
       </TagsInput>
@@ -1035,7 +1007,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '~/components/ui/breadcrumb'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible'
-import { Combobox, ComboboxAnchor, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxItemIndicator, ComboboxList } from '~/components/ui/combobox'
+import { Combobox, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxTrigger } from '~/components/ui/combobox'
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '~/components/ui/command'
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuTrigger, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '~/components/ui/context-menu'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '~/components/ui/drawer'
@@ -1058,8 +1030,9 @@ import {
 import { RangeCalendar } from '~/components/ui/range-calendar'
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '~/components/ui/resizable'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, SheetFooter, SheetClose } from '~/components/ui/sheet'
-import { Stepper, StepperItem } from '~/components/ui/stepper'
-import { TagsInput, TagsInputInput, TagsInputItem, TagsInputItemDelete, TagsInputItemText } from '~/components/ui/tags-input'
+import { BookUser, Check, CreditCard, Truck } from 'lucide-vue-next'
+import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper'
+import { TagsInput, TagsInputInput, TagsInputItem, TagsInputItemDelete } from '~/components/ui/tags-input'
 import { ToggleGroup } from '~/components/ui/toggle-group'
 import { toast } from 'vue-sonner'
 import { Toaster } from 'vue-sonner'
@@ -1137,7 +1110,7 @@ const ListItem = defineComponent({
   setup(props, { attrs }) {
     return () => h('li', {
       class: cn(
-        'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+        'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground',
         attrs.class as string,
       ),
     }, h(NavigationMenuLink, {
@@ -1164,11 +1137,27 @@ const tagsInputValue = ref(['Nuxt', 'Vue'])
 // Toggle Group 示例状态
 const toggleGroupValue = ref([])
 
-// 当前页码状态
-const currentPage = ref(1)
-
-// 当前步骤状态
-const currentStep = ref(1)
+const steps = [{
+  step: 1,
+  title: 'Address',
+  description: 'Add your address here',
+  icon: BookUser,
+}, {
+  step: 2,
+  title: 'Shipping',
+  description: 'Set your preferred shipping method',
+  icon: Truck,
+}, {
+  step: 3,
+  title: 'Payment',
+  description: 'Add any payment information you have',
+  icon: CreditCard,
+}, {
+  step: 4,
+  title: 'Checkout',
+  description: 'Confirm your order',
+  icon: Check,
+}]
 </script>
 
 <style scoped>
