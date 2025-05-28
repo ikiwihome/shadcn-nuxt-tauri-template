@@ -4,8 +4,6 @@
     <section>
       <h2 class="text-xl font-bold mb-4">Button 按钮</h2>
       <div class="flex gap-4 flex-wrap">
-        <!-- 默认按钮 -->
-        <Button>默认按钮</Button>
         <!-- 主要按钮 -->
         <Button variant="default">主要按钮</Button>
         <!-- 破坏性按钮 -->
@@ -100,11 +98,6 @@
             <TableCell>上海</TableCell>
           </TableRow>
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colspan="3">共2条数据</TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
     </section>
 
