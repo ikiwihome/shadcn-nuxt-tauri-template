@@ -1,117 +1,40 @@
 <template>
   <div class="container space-y-12 py-8">
-    <!-- 按钮组件案例 -->
+    <!-- Accordion 组件案例 -->
     <section>
-      <h2 class="text-xl font-bold mb-4">Button 按钮</h2>
-      <div class="flex gap-4 flex-wrap">
-        <!-- 主要按钮 -->
-        <Button variant="default">主要按钮</Button>
-        <!-- 破坏性按钮 -->
-        <Button variant="destructive">危险按钮</Button>
-        <!-- 轮廓按钮 -->
-        <Button variant="outline">轮廓按钮</Button>
-        <!-- 次要按钮 -->
-        <Button variant="secondary">次要按钮</Button>
-        <!-- 幽灵按钮 -->
-        <Button variant="ghost">幽灵按钮</Button>
-        <!-- 链接按钮 -->
-        <Button variant="link">链接按钮</Button>
-      </div>
+      <h2 class="text-xl font-bold mb-4">Accordion 手风琴</h2>
+      <Accordion type="single" collapsible class="w-full max-w-md">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>这是第一个问题吗？</AccordionTrigger>
+          <AccordionContent>
+            是的，这是第一个问题的答案。
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>这是第二个问题吗？</AccordionTrigger>
+          <AccordionContent>
+            是的，这是第二个问题的答案。
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger>这是第三个问题吗？</AccordionTrigger>
+          <AccordionContent>
+            是的，这是第三个问题的答案。
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </section>
 
-    <!-- 输入框组件案例 -->
+    <!-- Alert 组件案例 -->
     <section>
-      <h2 class="text-xl font-bold mb-4">Input 输入框</h2>
-      <div class="flex flex-col gap-2 w-64">
-        <Label for="demo-input">用户名</Label>
-        <Input id="demo-input" v-model="inputValue" placeholder="请输入用户名" />
-      </div>
-    </section>
-
-    <!-- 标签组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Label 标签</h2>
-      <div class="flex flex-col gap-2">
-        <Label>普通标签</Label>
-        <Label class="text-red-500">自定义样式标签</Label>
-      </div>
-    </section>
-
-    <!-- 单选框组组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">RadioGroup 单选框组</h2>
-      <RadioGroup v-model="radioValue" class="flex gap-6">
-        <RadioGroupItem value="a" id="radio-a" />
-        <Label for="radio-a">选项A</Label>
-        <RadioGroupItem value="b" id="radio-b" />
-        <Label for="radio-b">选项B</Label>
-      </RadioGroup>
-      <div class="mt-2 text-sm text-gray-500">当前选择：{{ radioValue }}</div>
-    </section>
-
-    <!-- 下拉选择组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Select 下拉选择</h2>
-      <Select v-model="selectValue">
-        <SelectTrigger class="w-48">
-          <SelectValue placeholder="请选择" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="apple">苹果</SelectItem>
-          <SelectItem value="banana">香蕉</SelectItem>
-          <SelectItem value="orange">橙子</SelectItem>
-        </SelectContent>
-      </Select>
-      <div class="mt-2 text-sm text-gray-500">当前选择：{{ selectValue }}</div>
-    </section>
-
-    <!-- 开关组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Switch 开关</h2>
-      <div class="flex items-center gap-4">
-        <Switch v-model="switchValue" />
-        <span>{{ switchValue ? '开' : '关' }}</span>
-      </div>
-    </section>
-
-    <!-- 表格组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Table 表格</h2>
-      <Table class="w-full max-w-2xl">
-        <TableCaption>示例数据表</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead>姓名</TableHead>
-            <TableHead>年龄</TableHead>
-            <TableHead>城市</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell>张三</TableCell>
-            <TableCell>28</TableCell>
-            <TableCell>北京</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>李四</TableCell>
-            <TableCell>32</TableCell>
-            <TableCell>上海</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </section>
-
-    <!-- Tooltip 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Tooltip 提示</h2>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger as-child>
-            <Button>鼠标悬停显示提示</Button>
-          </TooltipTrigger>
-          <TooltipContent>这是一个提示内容</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <h2 class="text-xl font-bold mb-4">Alert 警告</h2>
+      <Alert class="w-full max-w-md">
+        <!-- <Terminal class="h-4 w-4" /> -->
+        <AlertTitle>提示!</AlertTitle>
+        <AlertDescription>
+          你可以在这里添加你的警告信息。
+        </AlertDescription>
+      </Alert>
     </section>
 
     <!-- Alert Dialog 组件案例 -->
@@ -136,6 +59,16 @@
       </AlertDialog>
     </section>
 
+    <!-- Aspect Ratio 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Aspect Ratio 纵横比</h2>
+      <AspectRatio :ratio="16 / 9" class="bg-muted w-full max-w-md">
+        <!-- 这里可以放置需要保持纵横比的内容，例如图片或视频 -->
+        <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb797e09?w=800&dpr=2&q=80"
+          alt="Photo by Drew Beamer" class="rounded-md object-cover">
+      </AspectRatio>
+    </section>
+
     <!-- Avatar 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Avatar 头像</h2>
@@ -154,6 +87,45 @@
         <Badge variant="secondary">次要</Badge>
         <Badge variant="destructive">危险</Badge>
         <Badge variant="outline">轮廓</Badge>
+      </div>
+    </section>
+
+    <!-- Breadcrumb 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Breadcrumb 面包屑</h2>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">首页</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/components">组件</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>面包屑案例</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </section>
+
+    <!-- Button 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Button 按钮</h2>
+      <div class="flex gap-4 flex-wrap">
+        <!-- 主要按钮 -->
+        <Button variant="default">主要按钮</Button>
+        <!-- 破坏性按钮 -->
+        <Button variant="destructive">危险按钮</Button>
+        <!-- 轮廓按钮 -->
+        <Button variant="outline">轮廓按钮</Button>
+        <!-- 次要按钮 -->
+        <Button variant="secondary">次要按钮</Button>
+        <!-- 幽灵按钮 -->
+        <Button variant="ghost">幽灵按钮</Button>
+        <!-- 链接按钮 -->
+        <Button variant="link">链接按钮</Button>
       </div>
     </section>
 
@@ -180,6 +152,27 @@
       </Card>
     </section>
 
+    <!-- Carousel 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Carousel 轮播</h2>
+      <!-- Carousel 组件通常需要更复杂的配置和子组件，这里提供一个基本结构 -->
+      <Carousel class="relative w-full max-w-xs mx-auto">
+        <CarouselContent>
+          <CarouselItem v-for="i in 5" :key="i">
+            <div class="p-1">
+              <Card>
+                <CardContent class="flex aspect-square items-center justify-center p-6">
+                  <span class="text-4xl font-semibold">{{ i }}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </section>
+
     <!-- Checkbox 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Checkbox 复选框</h2>
@@ -191,6 +184,89 @@
         </Label>
       </div>
       <div class="mt-2 text-sm text-gray-500">当前状态：{{ checkboxChecked ? '选中' : '未选中' }}</div>
+    </section>
+
+    <!-- Collapsible 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Collapsible 可折叠区域</h2>
+      <Collapsible v-model:open="isCollapsibleOpen" class="w-full max-w-md space-y-2">
+        <CollapsibleTrigger as-child>
+          <div class="flex items-center justify-between space-x-4 px-4">
+            <h4 class="text-sm font-semibold">
+              @radix-vue Stars
+            </h4>
+            <!-- <CaretSortIcon class="h-4 w-4" /> -->
+          </div>
+        </CollapsibleTrigger>
+        <CollapsibleContent class="space-y-2 px-4">
+          <div class="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
+            @radix-vue/accordion
+          </div>
+          <div class="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
+            @radix-vue/collapsible
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+      <div class="mt-2 text-sm text-gray-500">当前状态：{{ isCollapsibleOpen ? '展开' : '折叠' }}</div>
+    </section>
+
+    <!-- Command 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Command 命令菜单</h2>
+      <Command class="rounded-lg border shadow-md w-full max-w-md">
+        <CommandInput placeholder="搜索..." />
+        <CommandList>
+          <CommandEmpty>无结果。</CommandEmpty>
+          <CommandGroup heading="建议">
+            <CommandItem value="calendar">日历</CommandItem>
+            <CommandItem value="search-emoji">搜索表情符号</CommandItem>
+            <CommandItem value="calculator">计算器</CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="设置">
+            <CommandItem value="profile">个人资料</CommandItem>
+            <CommandItem value="mail">邮件</CommandItem>
+            <CommandItem value="settings">设置</CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </section>
+
+    <!-- Context Menu 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Context Menu 右键菜单</h2>
+      <ContextMenu>
+        <ContextMenuTrigger
+          class="flex h-[150px] w-full max-w-md items-center justify-center rounded-md border border-dashed text-sm">
+          右键点击这里
+        </ContextMenuTrigger>
+        <ContextMenuContent class="w-64">
+          <ContextMenuItem inset>
+            返回
+            <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem inset disabled>
+            前进
+            <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem inset>
+            重新加载
+            <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuSub>
+            <ContextMenuSubTrigger inset>更多工具</ContextMenuSubTrigger>
+            <ContextMenuSubContent class="w-48">
+              <ContextMenuItem>保存页面为...</ContextMenuItem>
+              <ContextMenuItem>创建快捷方式...</ContextMenuItem>
+              <ContextMenuItem>开发者工具</ContextMenuItem>
+            </ContextMenuSubContent>
+          </ContextMenuSub>
+          <ContextMenuSeparator />
+          <ContextMenuItem inset>剪切</ContextMenuItem>
+          <ContextMenuItem inset>复制</ContextMenuItem>
+          <ContextMenuItem inset>粘贴</ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
     </section>
 
     <!-- Dialog 组件案例 -->
@@ -233,6 +309,31 @@
       </Dialog>
     </section>
 
+    <!-- Drawer 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Drawer 抽屉</h2>
+      <Drawer>
+        <DrawerTrigger as-child>
+          <Button variant="outline">打开抽屉</Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>你确定吗?</DrawerTitle>
+            <DrawerDescription>此操作无法撤消。</DrawerDescription>
+          </DrawerHeader>
+          <div class="p-4">
+            <p>抽屉内容区域。</p>
+          </div>
+          <DrawerFooter>
+            <Button>提交</Button>
+            <DrawerClose as-child>
+              <Button variant="outline">取消</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </section>
+
     <!-- Dropdown Menu 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Dropdown Menu 下拉菜单</h2>
@@ -273,6 +374,26 @@
       </DropdownMenu>
     </section>
 
+    <!-- Form 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Form 表单</h2>
+      <div class="w-full max-w-sm space-y-4">
+        <!-- Form 组件通常用于包裹表单元素 -->
+        <Form>
+          <!-- 这里可以放置各种表单字段，例如 Input、Checkbox 等 -->
+          <div class="space-y-2">
+            <Label for="form-name">姓名</Label>
+            <Input id="form-name" placeholder="请输入姓名" />
+          </div>
+          <div class="space-y-2">
+            <Label for="form-email">邮箱</Label>
+            <Input id="form-email" type="email" placeholder="请输入邮箱" />
+          </div>
+          <Button type="submit">提交</Button>
+        </Form>
+      </div>
+    </section>
+
     <!-- Hover Card 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Hover Card 悬停卡片</h2>
@@ -301,6 +422,24 @@
           </div>
         </HoverCardContent>
       </HoverCard>
+    </section>
+
+    <!-- Input 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Input 输入框</h2>
+      <div class="flex flex-col gap-2 w-64">
+        <Label for="demo-input">用户名</Label>
+        <Input id="demo-input" v-model="inputValue" placeholder="请输入用户名" />
+      </div>
+    </section>
+
+    <!-- Label 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Label 标签</h2>
+      <div class="flex flex-col gap-2">
+        <Label>普通标签</Label>
+        <Label class="text-red-500">自定义样式标签</Label>
+      </div>
     </section>
 
     <!-- Menubar 组件案例 -->
@@ -416,337 +555,6 @@
       </NavigationMenu>
     </section>
 
-    <!-- Popover 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Popover 气泡卡片</h2>
-      <Popover>
-        <PopoverTrigger as-child>
-          <Button variant="outline">打开气泡卡片</Button>
-        </PopoverTrigger>
-        <PopoverContent class="w-80">
-          <div class="grid gap-4">
-            <div class="space-y-2">
-              <h4 class="font-medium leading-none">尺寸</h4>
-              <p class="text-sm text-muted-foreground">
-                为元素设置所需的尺寸。
-              </p>
-            </div>
-            <div class="grid gap-2">
-              <div class="grid grid-cols-3 items-center gap-4">
-                <Label for="width">宽度</Label>
-                <Input id="width" default-value="100%" class="col-span-2 h-8" />
-              </div>
-              <div class="grid grid-cols-3 items-center gap-4">
-                <Label for="max-width">最大宽度</Label>
-                <Input id="max-width" default-value="300px" class="col-span-2 h-8" />
-              </div>
-              <div class="grid grid-cols-3 items-center gap-4">
-                <Label for="height">高度</Label>
-                <Input id="height" default-value="25px" class="col-span-2 h-8" />
-              </div>
-              <div class="grid grid-cols-3 items-center gap-4">
-                <Label for="max-height">最大高度</Label>
-                <Input id="max-height" default-value="none" class="col-span-2 h-8" />
-              </div>
-            </div>
-          </div>
-        </PopoverContent>
-      </Popover>
-    </section>
-
-    <!-- Progress 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Progress 进度条</h2>
-      <Progress :model-value="75" class="w-[60%]" />
-    </section>
-
-    <!-- Scroll Area 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Scroll Area 滚动区域</h2>
-      <ScrollArea class="h-[200px] w-[350px] rounded-md border p-4">
-        这是一个滚动区域的示例内容。请添加足够多的内容来触发滚动条。
-        <p v-for="i in 20" :key="i">内容 {{ i }}</p>
-      </ScrollArea>
-    </section>
-
-    <!-- Separator 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Separator 分隔符</h2>
-      <div class="space-y-1">
-        <h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
-        <p class="text-sm text-muted-foreground">
-          构建高性能、非风格化的组件库。
-        </p>
-      </div>
-      <Separator />
-      <div class="flex h-5 items-center space-x-4 text-sm">
-        <div>博客</div>
-        <Separator orientation="vertical" />
-        <div>文档</div>
-        <Separator orientation="vertical" />
-        <div>源代码</div>
-      </div>
-    </section>
-
-    <!-- Skeleton 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Skeleton 骨架屏</h2>
-      <div class="flex items-center space-x-4">
-        <Skeleton class="h-12 w-12 rounded-full" />
-        <div class="space-y-2">
-          <Skeleton class="h-4 w-[250px]" />
-          <Skeleton class="h-4 w-[200px]" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Slider 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Slider 滑块</h2>
-      <Slider v-model="sliderValue" :max="100" :step="1" class="w-[60%]" />
-      <div class="mt-2 text-sm text-gray-500">当前值：{{ sliderValue[0] }}</div>
-    </section>
-
-    <!-- Tabs 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Tabs 标签页</h2>
-      <Tabs default-value="account" class="w-[400px]">
-        <TabsList>
-          <TabsTrigger value="account">帐户</TabsTrigger>
-          <TabsTrigger value="password">密码</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-          在这里更改您的帐户设置。
-        </TabsContent>
-        <TabsContent value="password">
-          在这里更改您的密码。
-        </TabsContent>
-      </Tabs>
-    </section>
-
-    <!-- Textarea 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Textarea 文本域</h2>
-      <Textarea placeholder="请输入文本..." class="w-64" />
-    </section>
-
-    <!-- Toggle 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Toggle 切换按钮</h2>
-      <div class="flex items-center gap-4">
-        <Toggle v-model:pressed="togglePressed">切换</Toggle>
-        <span>当前状态：{{ togglePressed ? '按下' : '未按下' }}</span>
-      </div>
-    </section>
-
-    <!-- Form 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Form 表单</h2>
-      <div class="w-full max-w-sm space-y-4">
-        <!-- Form 组件通常用于包裹表单元素 -->
-        <Form>
-          <!-- 这里可以放置各种表单字段，例如 Input、Checkbox 等 -->
-          <div class="space-y-2">
-            <Label for="form-name">姓名</Label>
-            <Input id="form-name" placeholder="请输入姓名" />
-          </div>
-          <div class="space-y-2">
-            <Label for="form-email">邮箱</Label>
-            <Input id="form-email" type="email" placeholder="请输入邮箱" />
-          </div>
-          <Button type="submit">提交</Button>
-        </Form>
-      </div>
-    </section>
-
-    <!-- Accordion 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Accordion 手风琴</h2>
-      <Accordion type="single" collapsible class="w-full max-w-md">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>这是第一个问题吗？</AccordionTrigger>
-          <AccordionContent>
-            是的，这是第一个问题的答案。
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>这是第二个问题吗？</AccordionTrigger>
-          <AccordionContent>
-            是的，这是第二个问题的答案。
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>这是第三个问题吗？</AccordionTrigger>
-          <AccordionContent>
-            是的，这是第三个问题的答案。
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </section>
-
-    <!-- Alert 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Alert 警告</h2>
-      <Alert class="w-full max-w-md">
-        <!-- <Terminal class="h-4 w-4" /> -->
-        <AlertTitle>提示!</AlertTitle>
-        <AlertDescription>
-          你可以在这里添加你的警告信息。
-        </AlertDescription>
-      </Alert>
-    </section>
-
-
-
-    <!-- Breadcrumb 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Breadcrumb 面包屑</h2>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">首页</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/components">组件</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>面包屑案例</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    </section>
-
-    <!-- Carousel 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Carousel 轮播</h2>
-      <!-- Carousel 组件通常需要更复杂的配置和子组件，这里提供一个基本结构 -->
-      <Carousel class="relative w-full max-w-xs mx-auto">
-        <CarouselContent>
-          <CarouselItem v-for="i in 5" :key="i">
-            <div class="p-1">
-              <Card>
-                <CardContent class="flex aspect-square items-center justify-center p-6">
-                  <span class="text-4xl font-semibold">{{ i }}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </section>
-
-    <!-- Collapsible 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Collapsible 可折叠区域</h2>
-      <Collapsible v-model:open="isCollapsibleOpen" class="w-full max-w-md space-y-2">
-        <CollapsibleTrigger as-child>
-          <div class="flex items-center justify-between space-x-4 px-4">
-            <h4 class="text-sm font-semibold">
-              @radix-vue Stars
-            </h4>
-            <!-- <CaretSortIcon class="h-4 w-4" /> -->
-          </div>
-        </CollapsibleTrigger>
-        <CollapsibleContent class="space-y-2 px-4">
-          <div class="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
-            @radix-vue/accordion
-          </div>
-          <div class="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
-            @radix-vue/collapsible
-          </div>
-        </CollapsibleContent>
-      </Collapsible>
-      <div class="mt-2 text-sm text-gray-500">当前状态：{{ isCollapsibleOpen ? '展开' : '折叠' }}</div>
-    </section>
-
-    <!-- Command 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Command 命令菜单</h2>
-      <Command class="rounded-lg border shadow-md w-full max-w-md">
-        <CommandInput placeholder="搜索..." />
-        <CommandList>
-          <CommandEmpty>无结果。</CommandEmpty>
-          <CommandGroup heading="建议">
-            <CommandItem value="calendar">日历</CommandItem>
-            <CommandItem value="search-emoji">搜索表情符号</CommandItem>
-            <CommandItem value="calculator">计算器</CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="设置">
-            <CommandItem value="profile">个人资料</CommandItem>
-            <CommandItem value="mail">邮件</CommandItem>
-            <CommandItem value="settings">设置</CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </Command>
-    </section>
-
-    <!-- Context Menu 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Context Menu 右键菜单</h2>
-      <ContextMenu>
-        <ContextMenuTrigger
-          class="flex h-[150px] w-full max-w-md items-center justify-center rounded-md border border-dashed text-sm">
-          右键点击这里
-        </ContextMenuTrigger>
-        <ContextMenuContent class="w-64">
-          <ContextMenuItem inset>
-            返回
-            <ContextMenuShortcut>⌘[</ContextMenuShortcut>
-          </ContextMenuItem>
-          <ContextMenuItem inset disabled>
-            前进
-            <ContextMenuShortcut>⌘]</ContextMenuShortcut>
-          </ContextMenuItem>
-          <ContextMenuItem inset>
-            重新加载
-            <ContextMenuShortcut>⌘R</ContextMenuShortcut>
-          </ContextMenuItem>
-          <ContextMenuSub>
-            <ContextMenuSubTrigger inset>更多工具</ContextMenuSubTrigger>
-            <ContextMenuSubContent class="w-48">
-              <ContextMenuItem>保存页面为...</ContextMenuItem>
-              <ContextMenuItem>创建快捷方式...</ContextMenuItem>
-              <ContextMenuItem>开发者工具</ContextMenuItem>
-            </ContextMenuSubContent>
-          </ContextMenuSub>
-          <ContextMenuSeparator />
-          <ContextMenuItem inset>剪切</ContextMenuItem>
-          <ContextMenuItem inset>复制</ContextMenuItem>
-          <ContextMenuItem inset>粘贴</ContextMenuItem>
-        </ContextMenuContent>
-      </ContextMenu>
-    </section>
-
-    <!-- Drawer 组件案例 -->
-    <section>
-      <h2 class="text-xl font-bold mb-4">Drawer 抽屉</h2>
-      <Drawer>
-        <DrawerTrigger as-child>
-          <Button variant="outline">打开抽屉</Button>
-        </DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>你确定吗?</DrawerTitle>
-            <DrawerDescription>此操作无法撤消。</DrawerDescription>
-          </DrawerHeader>
-          <div class="p-4">
-            <p>抽屉内容区域。</p>
-          </div>
-          <DrawerFooter>
-            <Button>提交</Button>
-            <DrawerClose as-child>
-              <Button variant="outline">取消</Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-    </section>
-
     <!-- Number Field 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Number Field 数字输入框</h2>
@@ -804,6 +612,62 @@
       <div class="mt-2 text-sm text-gray-500">当前值：{{ pinInputValue }}</div>
     </section>
 
+    <!-- Popover 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Popover 气泡卡片</h2>
+      <Popover>
+        <PopoverTrigger as-child>
+          <Button variant="outline">打开气泡卡片</Button>
+        </PopoverTrigger>
+        <PopoverContent class="w-80">
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">尺寸</h4>
+              <p class="text-sm text-muted-foreground">
+                为元素设置所需的尺寸。
+              </p>
+            </div>
+            <div class="grid gap-2">
+              <div class="grid grid-cols-3 items-center gap-4">
+                <Label for="width">宽度</Label>
+                <Input id="width" default-value="100%" class="col-span-2 h-8" />
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <Label for="max-width">最大宽度</Label>
+                <Input id="max-width" default-value="300px" class="col-span-2 h-8" />
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <Label for="height">高度</Label>
+                <Input id="height" default-value="25px" class="col-span-2 h-8" />
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <Label for="max-height">最大高度</Label>
+                <Input id="max-height" default-value="none" class="col-span-2 h-8" />
+              </div>
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </section>
+
+    <!-- Progress 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Progress 进度条</h2>
+      <Progress :model-value="75" class="w-[60%]" />
+    </section>
+
+    <!-- RadioGroup 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">RadioGroup 单选框组</h2>
+      <RadioGroup v-model="radioValue" class="flex gap-6">
+        <RadioGroupItem value="a" id="radio-a" />
+        <Label for="radio-a">选项A</Label>
+        <RadioGroupItem value="b" id="radio-b" />
+        <Label for="radio-b">选项B</Label>
+      </RadioGroup>
+      <div class="mt-2 text-sm text-gray-500">当前选择：{{ radioValue }}</div>
+    </section>
+
     <!-- Range Calendar 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Range Calendar 范围日历</h2>
@@ -828,6 +692,50 @@
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
+    </section>
+
+    <!-- Scroll Area 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Scroll Area 滚动区域</h2>
+      <ScrollArea class="h-[200px] w-[350px] rounded-md border p-4">
+        这是一个滚动区域的示例内容。请添加足够多的内容来触发滚动条。
+        <p v-for="i in 20" :key="i">内容 {{ i }}</p>
+      </ScrollArea>
+    </section>
+
+    <!-- Select 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Select 下拉选择</h2>
+      <Select v-model="selectValue">
+        <SelectTrigger class="w-48">
+          <SelectValue placeholder="请选择" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">苹果</SelectItem>
+          <SelectItem value="banana">香蕉</SelectItem>
+          <SelectItem value="orange">橙子</SelectItem>
+        </SelectContent>
+      </Select>
+      <div class="mt-2 text-sm text-gray-500">当前选择：{{ selectValue }}</div>
+    </section>
+
+    <!-- Separator 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Separator 分隔符</h2>
+      <div class="space-y-1">
+        <h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
+        <p class="text-sm text-muted-foreground">
+          构建高性能、非风格化的组件库。
+        </p>
+      </div>
+      <Separator />
+      <div class="flex h-5 items-center space-x-4 text-sm">
+        <div>博客</div>
+        <Separator orientation="vertical" />
+        <div>文档</div>
+        <Separator orientation="vertical" />
+        <div>源代码</div>
+      </div>
     </section>
 
     <!-- Sheet 组件案例 -->
@@ -891,6 +799,25 @@
       </div>
     </section>
 
+    <!-- Skeleton 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Skeleton 骨架屏</h2>
+      <div class="flex items-center space-x-4">
+        <Skeleton class="h-12 w-12 rounded-full" />
+        <div class="space-y-2">
+          <Skeleton class="h-4 w-[250px]" />
+          <Skeleton class="h-4 w-[200px]" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Slider 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Slider 滑块</h2>
+      <Slider v-model="sliderValue" :max="100" :step="1" class="w-[60%]" />
+      <div class="mt-2 text-sm text-gray-500">当前值：{{ sliderValue[0] }}</div>
+    </section>
+
     <!-- Sonner 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Sonner 消息提示</h2>
@@ -921,6 +848,42 @@
       </Stepper>
     </section>
 
+    <!-- Switch 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Switch 开关</h2>
+      <div class="flex items-center gap-4">
+        <Switch v-model="switchValue" />
+        <span>{{ switchValue ? '开' : '关' }}</span>
+      </div>
+    </section>
+
+    <!-- Table 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Table 表格</h2>
+      <Table class="w-full max-w-2xl">
+        <TableCaption>示例数据表</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>姓名</TableHead>
+            <TableHead>年龄</TableHead>
+            <TableHead>城市</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>张三</TableCell>
+            <TableCell>28</TableCell>
+            <TableCell>北京</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>李四</TableCell>
+            <TableCell>32</TableCell>
+            <TableCell>上海</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </section>
+
     <!-- Tags Input 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Tags Input 标签输入框</h2>
@@ -935,6 +898,38 @@
       <div class="mt-2 text-sm text-gray-500">当前标签：{{ tagsInputValue.join(', ') }}</div>
     </section>
 
+    <!-- Tabs 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Tabs 标签页</h2>
+      <Tabs default-value="account" class="w-[400px]">
+        <TabsList>
+          <TabsTrigger value="account">帐户</TabsTrigger>
+          <TabsTrigger value="password">密码</TabsTrigger>
+        </TabsList>
+        <TabsContent value="account">
+          在这里更改您的帐户设置。
+        </TabsContent>
+        <TabsContent value="password">
+          在这里更改您的密码。
+        </TabsContent>
+      </Tabs>
+    </section>
+
+    <!-- Textarea 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Textarea 文本域</h2>
+      <Textarea placeholder="请输入文本..." class="w-64" />
+    </section>
+
+    <!-- Toggle 切换按钮 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Toggle 切换按钮</h2>
+      <div class="flex items-center gap-4">
+        <Toggle v-model:pressed="togglePressed">切换</Toggle>
+        <span>当前状态：{{ togglePressed ? '按下' : '未按下' }}</span>
+      </div>
+    </section>
+
     <!-- Toggle Group 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Toggle Group 切换按钮组</h2>
@@ -945,6 +940,19 @@
         <Toggle value="underline">下划线</Toggle>
       </ToggleGroup>
       <div class="mt-2 text-sm text-gray-500">当前选择：{{ toggleGroupValue.join(', ') }}</div>
+    </section>
+
+    <!-- Tooltip 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Tooltip 提示</h2>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger as-child>
+            <Button>鼠标悬停显示提示</Button>
+          </TooltipTrigger>
+          <TooltipContent>这是一个提示内容</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </section>
 
   </div>
