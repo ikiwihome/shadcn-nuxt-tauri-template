@@ -64,7 +64,7 @@
       <h2 class="text-xl font-bold mb-4">Aspect Ratio 纵横比</h2>
       <AspectRatio :ratio="16 / 9" class="bg-muted w-full max-w-md">
         <!-- 这里可以放置需要保持纵横比的内容，例如图片或视频 -->
-        <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb797e09?w=800&dpr=2&q=80"
+        <img src="https://list.ikimi.cc/storage/icons/rAAmIJS2M5RoRK9Etn0pL5W2fV64K97ZPNeEwCm5.png"
           alt="Photo by Drew Beamer" class="rounded-md object-cover">
       </AspectRatio>
     </section>
@@ -208,6 +208,43 @@
         </CollapsibleContent>
       </Collapsible>
       <div class="mt-2 text-sm text-gray-500">当前状态：{{ isCollapsibleOpen ? '展开' : '折叠' }}</div>
+    </section>
+
+    <!-- Combobox 组件案例 -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Combobox 命令框/组合框</h2>
+      <Combobox v-model="comboboxValue">
+        <ComboboxTrigger>
+          <Button variant="outline" class="w-[200px] justify-between">
+            {{ comboboxValue
+              ? frameworks.find((framework) => framework.value === comboboxValue)?.label
+              : "Select framework..." }}
+            <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </ComboboxTrigger>
+        <ComboboxContent>
+          <ComboboxInput placeholder="Search framework..." />
+          <ComboboxEmpty>无框架找到。</ComboboxEmpty>
+          <ComboboxViewport>
+            <ComboboxGroup>
+              <ComboboxItem
+                v-for="framework in frameworks"
+                :key="framework.value"
+                :value="framework.value"
+              >
+                <Check
+                  :class="cn(
+                    'mr-2 h-4 w-4',
+                    comboboxValue === framework.value ? 'opacity-100' : 'opacity-0'
+                  )"
+                />
+                {{ framework.label }}
+              </ComboboxItem>
+            </ComboboxGroup>
+          </ComboboxViewport>
+        </ComboboxContent>
+      </Combobox>
+      <div class="mt-2 text-sm text-gray-500">当前选择：{{ comboboxValue }}</div>
     </section>
 
     <!-- Command 组件案例 -->
@@ -961,20 +998,22 @@
 
 <script setup lang="ts">
 // 导入所有UI组件
-import { Button } from '~/components/ui/button'
-import { Input } from '~/components/ui/input'
-import { Label } from '~/components/ui/label'
-import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group'
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '~/components/ui/select'
-import { Switch } from '~/components/ui/switch'
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell, TableCaption, TableFooter } from '~/components/ui/table'
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '~/components/ui/tooltip'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion'
+import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '~/components/ui/alert-dialog'
+import { AspectRatio } from '~/components/ui/aspect-ratio'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Badge } from '~/components/ui/badge'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '~/components/ui/breadcrumb'
+import { Button } from '~/components/ui/button'
 import { Calendar } from '~/components/ui/calendar'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '~/components/ui/card'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel'
 import { Checkbox } from '~/components/ui/checkbox'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible'
+import { Combobox, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxTrigger, ComboboxViewport } from '~/components/ui/combobox'
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '~/components/ui/command'
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuTrigger, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '~/components/ui/context-menu'
 import {
   Dialog,
   DialogContent,
@@ -985,6 +1024,7 @@ import {
   DialogFooter,
   DialogClose
 } from '~/components/ui/dialog'
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '~/components/ui/drawer'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -996,29 +1036,10 @@ import {
 } from '~/components/ui/dropdown-menu'
 import { Form } from '~/components/ui/form'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from '~/components/ui/menubar'
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '~/components/ui/navigation-menu'
-import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import { Progress } from '~/components/ui/progress'
-import { ScrollArea } from '~/components/ui/scroll-area'
-import { Separator } from '~/components/ui/separator'
-import { Skeleton } from '~/components/ui/skeleton'
-import { Slider } from '~/components/ui/slider'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
-import { Textarea } from '~/components/ui/textarea'
-import { Toggle } from '~/components/ui/toggle'
-import { ref, h, defineComponent } from 'vue'
-import { cn } from '~/lib/utils'
-import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
-import { AspectRatio } from '~/components/ui/aspect-ratio'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '~/components/ui/breadcrumb'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible'
-import { Combobox, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxTrigger } from '~/components/ui/combobox'
-import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '~/components/ui/command'
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuTrigger, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '~/components/ui/context-menu'
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '~/components/ui/drawer'
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from '~/components/ui/number-field'
 import {
   Pagination,
@@ -1044,6 +1065,7 @@ import { TagsInput, TagsInputInput, TagsInputItem, TagsInputItemDelete } from '~
 import { ToggleGroup } from '~/components/ui/toggle-group'
 import { toast } from 'vue-sonner'
 import { Toaster } from 'vue-sonner'
+import { cn } from '~/lib/utils'
 
 // 输入框双向绑定
 const inputValue = ref('')
@@ -1166,6 +1188,16 @@ const steps = [{
   description: 'Confirm your order',
   icon: Check,
 }]
+
+// Combobox 示例状态
+const comboboxValue = ref(null)
+
+// Combobox 示例数据
+const frameworks = [
+  { value: 'vue', label: 'Vue' },
+  { value: 'react', label: 'React' },
+  { value: 'angular', label: 'Angular' },
+]
 </script>
 
 <style scoped>
