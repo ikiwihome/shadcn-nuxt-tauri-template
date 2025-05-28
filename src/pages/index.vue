@@ -213,38 +213,32 @@
     <!-- Combobox 组件案例 -->
     <section>
       <h2 class="text-xl font-bold mb-4">Combobox 命令框/组合框</h2>
-      <Combobox v-model="comboboxValue">
-        <ComboboxTrigger>
-          <Button variant="outline" class="w-[200px] justify-between">
-            {{ comboboxValue
-              ? frameworks.find((framework) => framework.value === comboboxValue)?.label
-              : "Select framework..." }}
-            <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-          </Button>
-        </ComboboxTrigger>
-        <ComboboxContent>
-          <ComboboxInput placeholder="Search framework..." />
-          <ComboboxEmpty>无框架找到。</ComboboxEmpty>
-          <ComboboxViewport>
-            <ComboboxGroup>
-              <ComboboxItem
-                v-for="framework in frameworks"
-                :key="framework.value"
-                :value="framework.value"
-              >
-                <Check
-                  :class="cn(
-                    'mr-2 h-4 w-4',
-                    comboboxValue === framework.value ? 'opacity-100' : 'opacity-0'
-                  )"
-                />
-                {{ framework.label }}
-              </ComboboxItem>
-            </ComboboxGroup>
-          </ComboboxViewport>
-        </ComboboxContent>
+      <Combobox by="label">
+        <ComboboxAnchor>
+          <div class="relative w-full max-w-sm items-center">
+            <ComboboxInput class="pl-9" :display-value="(val) => val?.label ?? ''" placeholder="Select framework..." />
+            <span class="absolute start-0 inset-y-0 flex items-center justify-center px-3">
+              <Search class="size-4 text-muted-foreground" />
+            </span>
+          </div>
+        </ComboboxAnchor>
+
+        <ComboboxList>
+          <ComboboxEmpty>
+            No framework found.
+          </ComboboxEmpty>
+
+          <ComboboxGroup>
+            <ComboboxItem v-for="framework in frameworks" :key="framework.value" :value="framework">
+              {{ framework.label }}
+
+              <ComboboxItemIndicator>
+                <Check :class="cn('ml-auto h-4 w-4')" />
+              </ComboboxItemIndicator>
+            </ComboboxItem>
+          </ComboboxGroup>
+        </ComboboxList>
       </Combobox>
-      <div class="mt-2 text-sm text-gray-500">当前选择：{{ comboboxValue }}</div>
     </section>
 
     <!-- Command 组件案例 -->
@@ -1011,29 +1005,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel'
 import { Checkbox } from '~/components/ui/checkbox'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible'
-import { Combobox, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxTrigger, ComboboxViewport } from '~/components/ui/combobox'
+import { Combobox, ComboboxAnchor, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxItemIndicator, ComboboxList } from '@/components/ui/combobox'
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '~/components/ui/command'
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuTrigger, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '~/components/ui/context-menu'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-  DialogClose
-} from '~/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '~/components/ui/dialog'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '~/components/ui/drawer'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuShortcut
-} from '~/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuShortcut } from '~/components/ui/dropdown-menu'
 import { Form } from '~/components/ui/form'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card'
 import { Input } from '~/components/ui/input'
@@ -1041,25 +1018,12 @@ import { Label } from '~/components/ui/label'
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from '~/components/ui/menubar'
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '~/components/ui/navigation-menu'
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from '~/components/ui/number-field'
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationFirst,
-  PaginationLast
-} from '~/components/ui/pagination'
-import {
-  PinInput,
-  PinInputGroup,
-  PinInputSlot,
-} from '~/components/ui/pin-input'
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationNext, PaginationPrevious, PaginationFirst, PaginationLast } from '~/components/ui/pagination'
+import { PinInput, PinInputGroup, PinInputSlot } from '~/components/ui/pin-input'
 import { RangeCalendar } from '~/components/ui/range-calendar'
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '~/components/ui/resizable'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, SheetFooter, SheetClose } from '~/components/ui/sheet'
-import { BookUser, Check, CreditCard, Truck } from 'lucide-vue-next'
+import { BookUser, Check, CreditCard, Truck, ChevronsUpDown, Search } from 'lucide-vue-next'
 import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper'
 import { TagsInput, TagsInputInput, TagsInputItem, TagsInputItemDelete } from '~/components/ui/tags-input'
 import { ToggleGroup } from '~/components/ui/toggle-group'
@@ -1194,9 +1158,11 @@ const comboboxValue = ref(null)
 
 // Combobox 示例数据
 const frameworks = [
-  { value: 'vue', label: 'Vue' },
-  { value: 'react', label: 'React' },
-  { value: 'angular', label: 'Angular' },
+  { value: 'next.js', label: 'Next.js' },
+  { value: 'sveltekit', label: 'SvelteKit' },
+  { value: 'nuxt', label: 'Nuxt' },
+  { value: 'remix', label: 'Remix' },
+  { value: 'astro', label: 'Astro' },
 ]
 </script>
 
