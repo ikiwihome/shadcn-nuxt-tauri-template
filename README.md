@@ -41,7 +41,7 @@
 4. 安装所有shadcn UI组件
 
    ```bash
-   pnpm dlx shadcn-vue@latest add alert-dialog avatar badge button calendar card checkbox dialog dropdown-menu form hover-card input label menubar navigation-menu popover progress radio-group scroll-area select separator skeleton slider switch table tabs textarea toggle tooltip
+   pnpm dlx shadcn-vue@latest add sidebar accordion alert alert-dialog aspect-ratio avatar badge breadcrumb button calendar card carousel checkbox collapsible combobox command context-menu table dialog drawer dropdown-menu form hover-card input label menubar navigation-menu number-field pagination pin-input popover progress radio-group range-calendar resizable scroll-area select separator sheet skeleton slider sonner stepper switch tabs tags-input textarea toggle toggle-group tooltip
    ```
 
 ## 本地开发
