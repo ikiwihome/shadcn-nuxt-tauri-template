@@ -1,10 +1,10 @@
-# Shadcn-Vue + Nuxt 3 + Tauri 项目模板
+# Shadcn-Vue + Nuxt 4 + Tauri 项目模板
 
-这是一个集成了shadcn/ui组件库的Nuxt 3和Tauri桌面应用开发模板。
+这是一个集成了shadcn/ui组件库的Nuxt 4和Tauri桌面应用开发模板。
 
 ## 技术栈
 
-- **前端框架**: [Nuxt 3](https://nuxt.com/) (Vue 3)
+- **前端框架**: [Nuxt 4](https://nuxt.com/) (Vue 3)
 - **UI组件库**: [shadcn/ui](https://ui.shadcn.com/) (基于Tailwind CSS)
 - **桌面运行时**: [Tauri](https://tauri.app/) (Rust)
 - **包管理**: pnpm

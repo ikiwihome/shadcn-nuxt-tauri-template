@@ -548,7 +548,7 @@
                         Nuxt + Shadcn Vue
                       </div>
                       <p class="text-sm leading-tight text-muted-foreground">
-                        一个集成了 Nuxt 3、Shadcn Vue 和 Tauri 的模板项目。
+                        一个集成了 Nuxt 4、Shadcn Vue 和 Tauri 的模板项目。
                       </p>
                     </a>
                   </NavigationMenuLink>

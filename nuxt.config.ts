@@ -3,14 +3,10 @@ import tailwindcss from "@tailwindcss/vite";
 import pkg from './package.json';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-22',
+  compatibilityDate: '2025-09-06',
   devtools: { enabled: false },
-  css: ['./src/assets/css/tailwind.css'],
-
-  // SSR must be turned off
-  ssr: false,
-  srcDir: "src/",
-
+  css: ['./app/assets/css/tailwind.css'],
+  ssr: true,
   modules: ['shadcn-nuxt', '@nuxtjs/color-mode', 'vue-sonner/nuxt'],
   colorMode: {
     classSuffix: ''
@@ -22,15 +18,17 @@ export default defineNuxtConfig({
     prefix: '',
     /**
      * Directory that the component lives in.
-     * @default "./src/components/ui"
+     * @default "./app/components/ui"
      */
-    componentDir: './src/components/ui'
+    componentDir: './app/components/ui'
   },
   nitro: {
     preset: 'static',
     compressPublicAssets: false,
     prerender: {
-      routes: ['/']
+      routes: ['/'],
+      ignore: ['/200', '/404'],
+      crawlLinks: false
     },
     routeRules: {
       '/**': {
@@ -79,8 +77,6 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ]
-    },
-    baseURL: './',
-    buildAssetsDir: '_nuxt/'
+    }
   }
 });
