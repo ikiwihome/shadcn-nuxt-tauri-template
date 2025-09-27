@@ -3,14 +3,11 @@ import tailwindcss from "@tailwindcss/vite";
 import pkg from './package.json';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-09-06',
   devtools: { enabled: false },
+  compatibilityDate: '2025-09-06',
   css: ['./app/assets/css/tailwind.css'],
   ssr: true,
   modules: ['shadcn-nuxt', '@nuxtjs/color-mode', 'vue-sonner/nuxt'],
-  colorMode: {
-    classSuffix: ''
-  },
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -21,6 +18,9 @@ export default defineNuxtConfig({
      * @default "./app/components/ui"
      */
     componentDir: './app/components/ui'
+  },
+  colorMode: {
+    classSuffix: ''
   },
   nitro: {
     preset: 'static',
