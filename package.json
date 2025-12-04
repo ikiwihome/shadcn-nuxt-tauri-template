@@ -27,7 +27,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-vue": "^8.6.0",
-    "lucide-vue-next": "^0.554.0",
+    "lucide-vue-next": "^0.555.0",
     "nuxt": "^4.2.1",
     "reka-ui": "^2.6.1",
     "tailwind-merge": "^3.4.0",
@@ -37,7 +37,7 @@
     "vee-validate": "^4.15.1",
     "vue": "^3.5.25",
     "vue-sonner": "^2.0.9",
-    "zod": "^4.1.13"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@iconify-json/radix-icons": "^1.2.5",
@@ -45,11 +45,11 @@
     "@nuxtjs/color-mode": "^4.0.0",
     "@tailwindcss/vite": "^4.1.17",
     "@tanstack/vue-table": "^8.21.3",
-    "@tauri-apps/cli": "2.9.4",
+    "@tauri-apps/cli": "2.9.5",
     "class-variance-authority": "^0.7.1",
-    "shadcn-nuxt": "2.3.3",
+    "shadcn-nuxt": "2.4.1",
     "typescript": "^5.9.3",
     "vue-router": "^4.6.3"
   },
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.24.0"
 }
