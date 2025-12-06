@@ -1,5 +1,6 @@
 {
   "name": "shadcn-nuxt-tauri-template",
+  "title": "shadcn nuxt tauri template",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -27,7 +28,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-vue": "^8.6.0",
-    "lucide-vue-next": "^0.555.0",
+    "lucide-vue-next": "^0.556.0",
     "nuxt": "^4.2.1",
     "reka-ui": "^2.6.1",
     "tailwind-merge": "^3.4.0",
@@ -47,7 +48,7 @@
     "@tanstack/vue-table": "^8.21.3",
     "@tauri-apps/cli": "2.9.5",
     "class-variance-authority": "^0.7.1",
-    "shadcn-nuxt": "2.4.1",
+    "shadcn-nuxt": "2.4.2",
     "typescript": "^5.9.3",
     "vue-router": "^4.6.3"
   },

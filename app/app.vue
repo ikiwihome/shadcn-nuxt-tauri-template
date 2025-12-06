@@ -1,32 +1,29 @@
 <template>
-  <div class="min-h-screen" :class="colorMode.value">
-    <div class="theme-toggle">
-      <Button variant="ghost" size="icon" @click="toggleDarkMode" class="no-hover">
-        <Sun v-if="!isDarkMode" class="h-5 w-5" />
-        <Moon v-else class="h-5 w-5" />
-      </Button>
-    </div>
-    <NuxtPage />
+<div class="min-h-screen">
+  <div class="theme-toggle">
+    <Button variant="ghost" size="icon" @click="toggleDarkMode" class="no-hover">
+      <Sun v-if="colorMode.value !== 'dark'" class="h-5 w-5" />
+      <Moon v-else class="h-5 w-5" />
+    </Button>
   </div>
+  <NuxtPage />
+</div>
 </template>
 
 <script setup>
 import { Sun, Moon } from 'lucide-vue-next'
 const colorMode = useColorMode()
-// 设置默认主题为light
-colorMode.preference = 'light'
 
-const isDarkMode = ref(false)
-
+// 使用 colorMode 统一管理主题状态
 function toggleDarkMode() {
-  isDarkMode.value = !isDarkMode.value
-  document.documentElement.classList.toggle('dark', isDarkMode.value)
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 
 onMounted(() => {
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    isDarkMode.value = true
-    document.documentElement.classList.add('dark')
+  // colorMode 模块会自动处理系统主题偏好
+  // 如果需要默认浅色主题，可以在 nuxt.config.ts 中配置
+  if (!colorMode.preference) {
+    colorMode.preference = 'light'
   }
 })
 </script>
