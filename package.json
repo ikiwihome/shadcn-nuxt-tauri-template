@@ -1,10 +1,10 @@
 {
   "name": "shadcn-nuxt-tauri-template",
-  "title": "shadcn nuxt tauri template",
+  "title": "shadcn-nuxt-tauri-template",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "shadcn nuxt3 tauri template",
+  "description": "shadcn-nuxt-tauri-template",
   "keywords": [
     "shadcn",
     "nuxt3",
@@ -28,7 +28,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-vue": "^8.6.0",
-    "lucide-vue-next": "^0.556.0",
+    "lucide-vue-next": "^0.562.0",
     "nuxt": "^4.2.1",
     "reka-ui": "^2.6.1",
     "tailwind-merge": "^3.4.0",
@@ -46,11 +46,11 @@
     "@nuxtjs/color-mode": "^4.0.0",
     "@tailwindcss/vite": "^4.1.17",
     "@tanstack/vue-table": "^8.21.3",
-    "@tauri-apps/cli": "2.9.5",
+    "@tauri-apps/cli": "2.9.6",
     "class-variance-authority": "^0.7.1",
-    "shadcn-nuxt": "2.4.2",
+    "shadcn-nuxt": "2.4.3",
     "typescript": "^5.9.3",
     "vue-router": "^4.6.3"
   },
-  "packageManager": "pnpm@10.24.0"
+  "packageManager": "pnpm@10.26.1"
 }
